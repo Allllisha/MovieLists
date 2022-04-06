@@ -1,0 +1,33 @@
+version: '3'
+services:
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_DATABASE: movelist
+      MYSQL_ROOT_PASSWORD: ""
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+    command: --default-authentication-plugin=mysql_native_password
+    ports:
+      - "3306:3306"
+    volumes:
+      - db:/var/lib/mysql
+  app:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    command: /bin/sh -c "rm -f tmp/pids/server.pid; bundle exec rails s -p 3000 -b '0.0.0.0'"
+    volumes:
+      - .:/app
+      - bundle:/usr/local/bundle
+    ports:
+      - 8080:3000
+    tty: true
+    stdin_open: true
+    environment:
+      TZ: "Asia/Tokyo"
+
+volumes:
+  bundle:
+    driver: local
+  db:
+    driver: local
