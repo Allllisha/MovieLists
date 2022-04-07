@@ -1,13 +1,12 @@
 puts 'Clearing database...'
 
 
-
 puts 'Generating movies...'
 page_number = 0
 
 loop do
   page_number += 1
-  url = "https://api.themoviedb.org/3/movie/popular?api_key=#{ENV['API_KEY']}&language=en-US&page=#{page_number.to_s}"
+  url = "https://api.themoviedb.org/3/movie/popular?api_key=1c993de64da6e820708b0ec2dd279961&language=en-US&page=#{page_number.to_s}"
   
   movies = URI.open(url).read
   movie = JSON.parse(movies)
@@ -30,20 +29,20 @@ end
 puts "#{Movie.count}"
 
 
-# puts 'Generating Genres...'
-# require 'open-uri'
-# require 'json'
+puts 'Generating Genres...'
+require 'open-uri'
+require 'json'
 
-# buffer = open('https://api.themoviedb.org/3/genre/movie/list?api_key=#{ENV['API_KEY']}&language=en-US').read
-# result = JSON.parse(buffer)
+buffer = open('https://api.themoviedb.org/3/genre/movie/list?api_key=1c993de64da6e820708b0ec2dd279961&language=en-US').read
+result = JSON.parse(buffer)
 
-# result["genres"].each do |genre|
-#  puts (genre)
-#  genre = Genre.new 
-#  genre.id = genre["id"]
-#  genre.name = genre["name"]
-#  genre.save
-#  puts("Add genres #{genre["name"]}")
-# end
+result["genres"].each do |genre|
+ puts (genre)
+ genre = Genre.new 
+ genre.id = genre["id"]
+ genre.name = genre["name"]
+ genre.save
+ puts("Add genres #{genre["name"]}")
+end
 
-# puts "Done ..." 
+puts "Done ..." 

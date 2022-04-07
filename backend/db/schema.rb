@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_07_115311) do
+ActiveRecord::Schema.define(version: 2022_04_08_015311) do
 
   create_table "bookmarks", charset: "utf8mb3", force: :cascade do |t|
     t.bigint "movie_id", null: false
@@ -55,15 +55,6 @@ ActiveRecord::Schema.define(version: 2022_04_07_115311) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_lists_on_user_id"
-  end
-
-  create_table "movie_genres", charset: "utf8mb3", force: :cascade do |t|
-    t.bigint "movie_id", null: false
-    t.bigint "genre_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["genre_id"], name: "index_movie_genres_on_genre_id"
-    t.index ["movie_id"], name: "index_movie_genres_on_movie_id"
   end
 
   create_table "movie_reviews", charset: "utf8mb3", force: :cascade do |t|
@@ -123,8 +114,6 @@ ActiveRecord::Schema.define(version: 2022_04_07_115311) do
   add_foreign_key "list_reviews", "lists"
   add_foreign_key "list_reviews", "users"
   add_foreign_key "lists", "users"
-  add_foreign_key "movie_genres", "genres"
-  add_foreign_key "movie_genres", "movies"
   add_foreign_key "movie_reviews", "movies"
   add_foreign_key "movie_reviews", "users"
 end
