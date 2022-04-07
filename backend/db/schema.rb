@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_04_06_091550) do
+ActiveRecord::Schema[7.0].define(version: 2022_04_07_043455) do
   create_table "bookmarks", charset: "utf8mb3", force: :cascade do |t|
     t.bigint "movie_id", null: false
     t.bigint "list_id", null: false
@@ -78,7 +78,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_06_091550) do
 
   create_table "movies", charset: "utf8mb3", force: :cascade do |t|
     t.string "title", null: false
-    t.string "overview", null: false
+    t.text "overview", null: false
     t.string "poster_url", null: false
     t.float "rating", default: 0.0, null: false
     t.datetime "created_at", null: false
