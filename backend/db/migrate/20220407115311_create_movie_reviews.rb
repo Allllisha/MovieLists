@@ -1,4 +1,4 @@
-class CreateMovieReviews < ActiveRecord::Migration[7.0]
+class CreateMovieReviews < ActiveRecord::Migration[6.1]
   def change
     create_table :movie_reviews do |t|
       t.references :user, null: false, foreign_key: true

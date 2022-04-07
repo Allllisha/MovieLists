@@ -1,5 +1,5 @@
 puts 'Clearing database...'
-Movie.destroy_all
+
 
 
 puts 'Generating movies...'
@@ -30,20 +30,20 @@ end
 puts "#{Movie.count}"
 
 
-puts 'Generating Genres...'
-require 'open-uri'
-require 'json'
+# puts 'Generating Genres...'
+# require 'open-uri'
+# require 'json'
 
-buffer = open('https://api.themoviedb.org/3/genre/movie/list?api_key=#{ENV['API_KEY']}&language=en-US').read
-result = JSON.parse(buffer)
+# buffer = open('https://api.themoviedb.org/3/genre/movie/list?api_key=#{ENV['API_KEY']}&language=en-US').read
+# result = JSON.parse(buffer)
 
-result["genres"].each do |genre|
- puts (genre)
- genre = Genre.new 
- genre.id = genre["id"]
- genre.name = genre["name"]
- genre.save
- puts("Add genres #{genre["name"]}")
-end
+# result["genres"].each do |genre|
+#  puts (genre)
+#  genre = Genre.new 
+#  genre.id = genre["id"]
+#  genre.name = genre["name"]
+#  genre.save
+#  puts("Add genres #{genre["name"]}")
+# end
 
-puts "Done ..." 
+# puts "Done ..." 

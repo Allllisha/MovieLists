@@ -1,4 +1,4 @@
-class CreateListFollowers < ActiveRecord::Migration[7.0]
+class CreateListFollowers < ActiveRecord::Migration[6.1]
   def change
     create_table :list_followers do |t|
       t.references :list, null: false, foreign_key: true

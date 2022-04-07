@@ -4,6 +4,7 @@ development:
   reconnect: false
   database: MovieList_development
   pool: 5
+  socket: /tmp/mysql.sock
   username: <%= ENV['DATABASE_USERNAME'] %>
   password: <%= ENV['DATABASE_PASSWORD'] %>
   host: localhost
