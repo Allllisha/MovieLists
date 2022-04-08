@@ -1,0 +1,101 @@
+.sign-in-form{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+  height: 80vh;
+}
+
+.form-container{
+  margin-top: 50px;
+}
+
+.bg {
+  padding-top: 60px;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  width: 100%;
+  padding-left: 30px;
+  padding-right:30px;
+  padding-bottom: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  h2{
+    position: absolute;
+  }
+}
+
+
+.glass {
+  width: 100%;
+  margin-top:30px;
+  max-width: 600px;
+  padding: 30px;
+  background-color: rgba(255, 255, 255, 0.029); 
+  border: 1px solid rgba(255, 255, 255, 0.4); 
+  border-right-color: rgba(255, 255, 255, 0.043);
+  border-bottom-color: rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
+  -webkit-backdrop-filter: blur(20px); 
+  backdrop-filter: blur(20px);
+  box-shadow: 0 5px 20px rgba(255, 152, 79, 0.5); 
+ position: relative;
+}
+
+.form-label{
+  color: white;
+}
+
+.comment-container{
+  margin-left: 50px;
+  margin-right: 50px;
+  .part-one{
+    height: 300px;
+    background-color: white;
+  }
+  .part-two{
+    margin-top: 20px;
+    height: 150px;
+  }
+
+  form{
+    margin-left: 50px;
+    margin-right: 50px;
+  }
+}
+
+.star-rating {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
+  margin-bottom: 50px;
+  
+  input {
+    visibility: hidden;
+    margin-right: 1em;
+    font-size: 28px;
+    text-shadow: 0.5px 0.5px 3px #E67E23;
+  }
+
+  input:before {
+    cursor: pointer;
+    visibility: visible;
+    font-family: 'Font Awesome 5 Free';
+    content: '\f005';
+    font-weight: 900;
+    color: #FD4;
+    transition: color 0.35s;
+  }
+
+  input:hover {
+    transform: scale(1.2) translate(-10%, -10%);
+  }
+
+  input:checked ~ input:before {
+    color: #fff;
+  }
+}

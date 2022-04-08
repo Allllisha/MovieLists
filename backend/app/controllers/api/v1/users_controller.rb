@@ -4,7 +4,7 @@ module Api
       before_action :find_customer, only: [:show, :update, :destroy]
 
       def index 
-        @users = User.all
+       @users = User.all
       end
     
       def show
@@ -31,7 +31,7 @@ module Api
       end
     
       def user_params
-        params.permit(:first_name, :last_name, :email, :password, :photo_url)
+        params.permit(:name, :nickname, :email, :password, :photo_url)
       end
 
     end

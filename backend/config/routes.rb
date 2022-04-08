@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       namespace :auth do
         resources :sessions, only: %i[index]
       end
+      resources :users
       resources :movies, only: [:index, :show]
       resources :movie_reviews
       resources :movie_genres

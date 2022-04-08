@@ -1,1 +1,3 @@
-json.extract! @current_user, :id, :first_name, :last_name, :email, :photo_url
+json.array! @users do | user |
+  json.partial! user
+end
