@@ -2,9 +2,11 @@
 import { BrowserRouter, Route, Routes, useNavigate  } from "react-router-dom";
 import React, { useState, useEffect, createContext } from "react";
 import Home from "./Home";
+import Movie from "./Movie";
 import  Page from "./Page";
 import  SignUp  from "./SignUp";
 import  SignIn  from "./SignIn";
+import  Header  from "./Header";
 // import Header from './Header';
 // import Footer from "./Footer";
 import { getCurrentUser } from './Auth';
@@ -72,6 +74,7 @@ const Main = () => {
 
   return (
     <div>
+      <Header/>
     <AuthContext.Provider
             value={{
               loading,
@@ -89,6 +92,16 @@ const Main = () => {
       <Route exact path="/home" element={
         <PrivateRoute>
       < Home />
+      </PrivateRoute>
+      }/>
+      <Route exact path="/lists" element={
+        <PrivateRoute>
+      < Home />
+      </PrivateRoute>
+      }/>
+      <Route exact path="/movies" element={
+        <PrivateRoute>
+      < Movie />
       </PrivateRoute>
       }/>
     </Routes>
