@@ -32,7 +32,7 @@ module Api
       end
     
       def movie_review_params
-        params.permit(:movie_id, :user_id, :comment, :rating)
+        params.permit(:movie_id, :user_id, :photo_url, :comment, :rating)
       end
 
     end

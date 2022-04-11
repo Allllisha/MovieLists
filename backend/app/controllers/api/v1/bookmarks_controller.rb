@@ -5,11 +5,13 @@ module Api
 
       def create
         @bookmark = Bookmark.create(bookmark_params)
-  
+        @list = List.find(params[:list_id])
+        @bookmark.list = @list
       end
 
       def update
         @bookmark.update(bookmark_params)
+
       end
     
       def destroy

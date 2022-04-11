@@ -76,6 +76,7 @@ const HeaderDrawer = (props) => {
       <Divider />
       <List>
         <div className="image-drawer">
+      
         </div>
         <div className="list-component">
         {drawerItem.map((item, index) => (

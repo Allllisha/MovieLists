@@ -3,8 +3,8 @@ module Api
     class ListsController < ApplicationController
       before_action :find_customer, only: [:show, :update, :destroy]
 
-      def index 
-        @lists = List.where(user: current_user)
+      def index
+        @lists = List.all
       end
     
       def show

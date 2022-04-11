@@ -1,5 +1,5 @@
 import React from "react";
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import {  useState, useEffect } from 'react';
 import { api } from "./Axios";
 import '../stylesheets/Movie.scss';
@@ -34,7 +34,7 @@ const Movie = () => {
             </div>
           </div>
           <div className="movie-title-card">
-          <h3>{movie.title}</h3>
+          <h3><Link to={`/movies/${movie.id}`}>{movie.title}</Link></h3>
           </div>
           <button class="btn">Discover</button>
         </div>
