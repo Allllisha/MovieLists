@@ -53,18 +53,16 @@
   margin-left: 50px;
   margin-right: 50px;
   .part-one{
-    height: 300px;
     background-color: white;
   }
   .part-two{
-    margin-top: 20px;
-    height: 150px;
+    background-color: #b1354c;
+    padding: 30px;
+    h4{
+      color: white;
+    }
   }
 
-  form{
-    margin-left: 50px;
-    margin-right: 50px;
-  }
 }
 
 .star-rating {
