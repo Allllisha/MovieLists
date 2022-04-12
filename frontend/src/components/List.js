@@ -54,7 +54,7 @@ const List = () => {
                 <img src={`http://localhost:8080${ list.image_url.url }`} alt="" />
                 <div class="card-img-overlay">
                   <h4 class="card-title">
-                    <Link to={`/lists/${list.id}`}>{list.name}</Link>
+                    <Link to={`/lists/${list.id}/${user.id}`}>{list.name}</Link>
                   </h4>
                   <div class="item">
                     <FaEdit />

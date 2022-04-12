@@ -1,7 +1,7 @@
 module Api
   module V1
     class UsersController < ApplicationController
-      before_action :find_customer, only: [:show, :update, :destroy]
+      before_action :find_user, only: [:show, :update, :destroy]
 
       def index 
        @users = User.all

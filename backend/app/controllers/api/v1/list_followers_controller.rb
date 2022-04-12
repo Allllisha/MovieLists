@@ -1,7 +1,7 @@
 module Api
   module V1
     class ListFollowersController < ApplicationController
-      before_action :find_customer, only: [:show, :update, :destroy]
+      before_action :find_list_follower, only: [:show, :update, :destroy]
 
       def index 
         @list_followers = ListFollower.all

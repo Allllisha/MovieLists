@@ -1,4 +1,3 @@
-// import { createContext, useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
 import React, { useState, useEffect, createContext } from "react";
 import Home from "./Home";
@@ -12,7 +11,6 @@ import ListDetails from "./ListDetails";
 import SignUp from "./SignUp";
 import SignIn from "./SignIn";
 import Header from "./Header";
-// import Header from './Header';
 // import Footer from "./Footer";
 import { getCurrentUser } from "./Auth";
 export const AuthContext = createContext();
@@ -101,7 +99,7 @@ const Main = () => {
           />
           <Route
             exact
-            path="/lists/:listId"
+            path="/lists/:listId/:userId"
             element={
               <PrivateRoute>
                 < ListDetails />
@@ -137,7 +135,7 @@ const Main = () => {
           />
           <Route
             exact
-            path="/movies/:movieId"
+            path="/movies/:movieId/"
             element={
               <PrivateRoute>
                 <MovieDetails />

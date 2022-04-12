@@ -114,10 +114,12 @@ const MovieDetails = () => {
                   </div>
                   {console.log(review)}
                   <div className="comment-line">
+                    {review.name}
                     <div className="stars">{star.repeat(review.rating)}</div>
                     <div>{review.comment}</div>
-                    {review.create_at}
-                    <hr />
+                  </div>
+                  <div className="time-delete">
+                  <p>{review.created_at}</p>
                   </div>
                 </div>
               );
