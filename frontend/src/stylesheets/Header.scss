@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Parisienne&display=swap');
 
 #title{
-  font-family: 'Parisienne', cursive;
-  font-size: 30px;
+  font-family: 'Rubik', sans-serif;
+  font-size: 25px;
   a{
     color: white;
     text-decoration: none;
@@ -38,4 +38,15 @@
       color: green;
     }
   }
+ }
+
+ .header-users{
+   display: flex;
+
+   img{
+     height: 40px;
+     width: 40px;
+     border-radius: 50%;
+     margin-right: 10px;
+   }
  }

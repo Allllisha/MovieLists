@@ -8,7 +8,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { api } from "./Axios";
 
 const Bookmark = () => {
-  const { listId } = useParams();
+  const { listId, userId } = useParams();
   const [movies, setMovies] = useState([]);
   const [bookmark, setBookmark] = useState({
     movie_id: "",
@@ -50,7 +50,7 @@ const Bookmark = () => {
       try {
         const response = await api.post(`http://localhost:8080/api/v1/bookmarks.json`, BookmarksData);
         console.log(response);
-        navigate(`/lists/${listId}`);
+        navigate(`/lists/${listId}/${userId}`);
       } catch (err) {
         console.error(err);
       }

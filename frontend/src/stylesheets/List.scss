@@ -28,7 +28,13 @@
 
   a{
     color: white;
+
+    &:hover{
+      color: red;
+    }
   }
+
+  
 }
 
 .white-text{
@@ -68,6 +74,10 @@ p{
   align-items: center;
   flex-direction: column;
   margin-bottom: 50px;
+  background: linear-gradient(120deg, #2d1849c2, #b1354c84), url("../image/movielist.jpeg");
+  height: 300px;
+  background-position: center;
+  background-size: cover;
 
   h1{
     color: white;
@@ -92,4 +102,23 @@ p{
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.icon-edit{
+  margin-right: 10px;
+ a{
+   color: white;
+
+   &:hover{
+    color: red;
+  }
+ }
+
+}
+
+.icon-delete{
+  margin-right: 10px;
+  &:hover{
+    color: red;
+  }
 }

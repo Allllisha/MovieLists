@@ -1,7 +1,15 @@
 module Api
   module V1
     class BookmarksController < ApplicationController
-      before_action :set_bookmarks, only: [:create, :update, :destroy]
+      before_action :set_bookmarks, only: [:show, :create, :update, :destroy]
+
+      def index
+       @bookmarks = Bookmark.all
+      end  
+
+      def show
+ 
+       end  
 
       def create
         @bookmark = Bookmark.create(bookmark_params)

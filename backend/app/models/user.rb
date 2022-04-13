@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+mount_uploader :image, ImageUploader       
             # Include default devise modules.
             devise :database_authenticatable, :registerable,
                     :recoverable, :rememberable, :validatable

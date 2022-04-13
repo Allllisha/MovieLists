@@ -1,7 +1,7 @@
 module Api
   module V1
     class MovieReviewsController < ApplicationController
-      before_action :find_customer, only: [:show, :update, :destroy]
+      before_action :find_movie_genre, only: [:show, :update, :destroy]
 
       def index 
         @movie_reviews = MovieReview.all
@@ -32,7 +32,7 @@ module Api
       end
     
       def movie_review_params
-        params.permit(:movie_id, :user_id, :photo_url, :comment, :rating)
+        params.permit(:movie_id, :user_id, :image, :comment, :rating)
       end
 
     end

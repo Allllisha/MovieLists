@@ -1,7 +1,7 @@
 module Api
   module V1
     class UsersController < ApplicationController
-      before_action :find_customer, only: [:show, :update, :destroy]
+      before_action :find_user, only: [:show, :update, :destroy]
 
       def index 
        @users = User.all
@@ -12,22 +12,22 @@ module Api
       end
     
       def create
-        @users =  User.create(user_params)
+        @user = User.create(user_params)
       end
     
       def update
-        @users.update(user_params)
+        @user.update(user_params)
       end
     
       def destroy
-        @users.destroy
+        @user.destroy
       end
     
        
       private
 
       def find_user
-        @users = User.find(params[:id])
+        @user = User.find(params[:id])
       end
     
       def user_params

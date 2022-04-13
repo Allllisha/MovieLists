@@ -580,3 +580,35 @@ padding-top: 3px;
   border-color: white;
  }
 }
+
+.time-delete{
+  font-size: 15px;
+  padding-bottom: 5px;
+  padding: 10px;
+}
+
+.movie-poster-slider{
+
+img{
+  width: 100px;
+  height: 150px;
+  border-radius: 0%;
+}
+  
+}
+
+ .time-destroy{
+   display: flex;
+ }
+
+ .trash-item{
+   margin-left: 10px;
+   padding-bottom: 5px;
+ }
+
+ .bookmark-button{
+   margin-top: 20px;
+   display: flex;
+   justify-content: flex-end;
+   margin-right: 50px;
+ }
