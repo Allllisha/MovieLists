@@ -385,6 +385,10 @@ font-family: 'Rubik', sans-serif;
   height: 50%;
   padding-left: 25px;
 
+  h6{
+    color: white;
+  }
+
   .overview-text{
     font-size: 15px;
     word-break: break-all !important;
@@ -392,6 +396,7 @@ font-family: 'Rubik', sans-serif;
     font-family: 'Quicksand', sans-serif;
     overflow-wrap: break-word !important;
     white-space: pre-wrap;
+    height: 200px;
   }
  }
 
@@ -584,7 +589,8 @@ padding-top: 3px;
 .time-delete{
   font-size: 15px;
   padding-bottom: 5px;
-  padding: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .movie-poster-slider{
@@ -611,4 +617,44 @@ img{
    display: flex;
    justify-content: flex-end;
    margin-right: 50px;
+   margin-bottom: 50px;
  }
+
+ 
+
+ .edit-delete{
+  color: #201133;
+   display: flex;
+   margin-bottom: 10px;
+ }
+
+ .delete-item{
+   margin-left: 10px;
+
+   &:hover{
+    color: white;
+   }
+
+ }
+
+
+ .edit-item{
+  margin-left: 10px;
+
+  &:hover{
+    color: white;
+  }
+}
+
+.reviewer-info{
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 100%;
+  display: flex;
+  img{
+    border-radius: 50%;
+    margin-right: 10px;
+    width: 30px;
+    height: 30px;
+  }
+}
