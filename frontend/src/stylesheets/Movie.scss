@@ -305,7 +305,7 @@ li {
   display: flex;
 
   h3{
-    margin-top: 2px;
+    margin-top: 5px;
     margin-left: 5px;
   }
 
@@ -326,4 +326,20 @@ li {
     margin-bottom: 20px;
     font-size: 15px;
   }
+
+  a{
+    color: white;
+  }
+}
+
+.movie-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 50px;
+  background: linear-gradient(120deg, #2d1849c2, #b1354c84), url("../image/movielist.jpeg");
+  height: 300px;
+  background-position: center;
+  background-size: cover;
 }

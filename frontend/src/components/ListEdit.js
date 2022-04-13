@@ -7,7 +7,7 @@ import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { api } from "./Axios";
 
-const NewLists = () => {
+const ListsEdit = () => {
   const { userId } = useParams();
   const [newList, setNewList] = useState({
     name: "",
@@ -102,4 +102,4 @@ const NewLists = () => {
   );
 };
 
-export default NewLists;
+export default ListsEdit;

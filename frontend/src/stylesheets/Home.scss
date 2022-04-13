@@ -15,7 +15,32 @@
   margin-top: 30px;
   margin-bottom: 10px;
 
+  .user-info{
+    display: flex;
+    justify-content: center;
+
+    .welcome{
+      margin-right: 10px;
+  }
+  
+  }
+
+  img{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+  }
+
+ a{
+   color: #b1354c;
+
+   &:hover{
+    color: #201133;
+   }
+ }
+
   h5{
+    margin-top: 30px;
     font-family: 'Rubik', sans-serif;
     color: white;
     display: flex;

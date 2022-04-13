@@ -6,6 +6,16 @@ import { Link } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import "../stylesheets/MovieDetails.scss";
+import "../stylesheets/ListDetails.scss";
+import { FiDelete } from "react-icons/fi";
+import moment from 'moment';
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import 'swiper/scss';
+import 'swiper/scss/navigation';
+import 'swiper/scss/pagination';
+
 
 const ListDetails = () => {
   const [list, setList] = useState([]);
@@ -26,6 +36,7 @@ const ListDetails = () => {
   useEffect(() => {
     getListsData();
   });
+
 
   const handleOnChange = (event) => {
     const value = event.target.value;
@@ -59,39 +70,62 @@ const ListDetails = () => {
     sendPostRequest();
   };
 
-
-  const style = {
-    backgroundImage: `url(${list.poster_url})`,
-  };
-
   const star = "⭐";
 
+  const settings = {
+    infinite: true,
+    autoplay: true,
+    speed: 500,
+  };
 
+  const handleOnDelete = async (id, event) => {
+    event.preventDefault();
+    const response = await api.delete(`http://localhost:8080/api/v1/list_reviews/${id}.json`);
+    console.log(response);
+    const reviewItems = review.filter((item) => item.id !== id);
+    setReview(reviewItems)
+  };
 
   return(
     <div>
-      <div class="card-category">
-        <div class="movie_card" id="bright">
-          <div class="info_section">
+      <Slider {...settings}>
+      {(list.movies || []).map((movie)=>{
+         return(
+         <div className="card-category">
+        <div className="movie_card" id="bright">
+          <div className="info_section">
             <Link to={`/list`}></Link>
-            <div class="movie_header">
+            <div className="movie_header">
               <div className="locandina">
-                <img src={list.poster_url} alt="" />
+                <img src={movie.poster_url} alt="" />
               </div>
-              <h1>{list.title}</h1>
+              <h1>{movie.title}</h1>
               <h4>
-                {list.rating} {star.repeat(list.rating)}
+                {movie.rating} {star.repeat(movie.rating)}
               </h4>
             </div>
-            <div class="movie-description">
-              <div class="overview-text">{list.overview}</div>
+            <div className="movie-description">
+              <div className="overview-text">{movie.overview}</div>
             </div>
-            <div class="movie_social"></div>
+            <div className="movie_social"></div>
           </div>
-          <div class="blur_back bright_back" style={style}></div>
+          <div className="blur_back bright_back" style={{ backgroundImage: `url(${movie.poster_url})` }}></div>
         </div>
       </div>
-      <div class="content"></div>
+         )
+      })}
+     </Slider>
+
+    <div className="bookmark-button">
+    <Link to={`/bookmarks/lists/${listId}`}><Button>Add Movie</Button></Link>
+    </div>
+      
+    <div className="movie-comment-container">
+ 
+      <div className="">
+      </div>
+    </div>
+   
 
 
       <div className="comment-container">
@@ -106,14 +140,21 @@ const ListDetails = () => {
                   {review.name}
                   </div>
                   </div>
-                  {console.log(review)}
                   <div className="comment-line">
                     {review.name}
                     <div className="stars">{star.repeat(review.rating)}</div>
                     <div>{review.comment}</div>
                   </div>
                   <div className="time-delete">
-                  <p>{review.created_at}</p>
+                    <div className="time-destroy">
+                  <p>{moment(review.created_at).format('D MMMM YYYY HH:mm')}</p>
+                  <div className="trash-item">
+                  < FiDelete
+                  onClick={(e) => {handleOnDelete(review.id,  e)}}
+                   />
+                  </div>
+                  </div>
+                  <hr />
                   </div>
                 </div>
               );
@@ -170,14 +211,6 @@ const ListDetails = () => {
             </Form>
           </div>
         </div>
-
-
-
-
-
-
-
-      <Link to={`/bookmarks/lists/${listId}`}>Add Movie</Link>
     </div>
   )
 } 

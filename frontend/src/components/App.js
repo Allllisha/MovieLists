@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
 import React, { useState, useEffect, createContext } from "react";
 import Home from "./Home";
+import UserEdit from "./UserEdit";
 import Movie from "./Movie";
 import Page from "./Page";
 import List from "./List";
@@ -8,10 +9,11 @@ import Bookmark from "./Bookmark";
 import NewLists from "./NewList";
 import MovieDetails from "./MovieDetails";
 import ListDetails from "./ListDetails";
+import ListEdit from "./ListEdit";
 import SignUp from "./SignUp";
 import SignIn from "./SignIn";
 import Header from "./Header";
-// import Footer from "./Footer";
+import Footer from "./Footer";
 import { getCurrentUser } from "./Auth";
 export const AuthContext = createContext();
 
@@ -97,21 +99,39 @@ const Main = () => {
               </PrivateRoute>
             }
           />
+           <Route
+            exact
+            path="/users/:userId/edit"
+            element={
+              <PrivateRoute>
+                <UserEdit/>
+              </PrivateRoute>
+            }
+          />
           <Route
             exact
             path="/lists/:listId/:userId"
             element={
               <PrivateRoute>
-                < ListDetails />
+                <ListDetails />
               </PrivateRoute>
             }
           />
-                    <Route
+          <Route
             exact
             path="/lists"
             element={
               <PrivateRoute>
                 <List />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            exact
+            path="/lists/:listId/edit"
+            element={
+              <PrivateRoute>
+                <ListEdit />
               </PrivateRoute>
             }
           />
@@ -142,17 +162,18 @@ const Main = () => {
               </PrivateRoute>
             }
           />
-           <Route
+          <Route
             exact
             path="/bookmarks/lists/:listId"
             element={
               <PrivateRoute>
-                < Bookmark />
+                <Bookmark />
               </PrivateRoute>
             }
           />
         </Routes>
       </AuthContext.Provider>
+      <Footer />
     </div>
   );
 };

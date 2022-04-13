@@ -1,8 +1,8 @@
 import React from 'react';
-import {  useNavigate, Link } from "react-router-dom";
 import Cookies from 'js-cookie';
+import Image from "../image/cinema.jpeg";
 import { makeStyles } from '@material-ui/core/styles';
-import {  useState } from 'react';
+import {  useState, useEffect } from 'react';
 import {  signOut, getCurrentUser } from './Auth';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -11,6 +11,7 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import HeaderDrawer from './HeaderDrawer';
+import {  useNavigate, Link } from "react-router-dom";
 import '../stylesheets/Header.scss';
 
 const useStyles = makeStyles((theme) => ({
@@ -28,7 +29,17 @@ const useStyles = makeStyles((theme) => ({
 
 
 const Header = () => {
-
+  const [user, setCurrentUser] = useState([])
+  const [image, setImage] = useState([])
+  const getCurrentUserData = async () => {
+    const res = await getCurrentUser();
+    setCurrentUser(res.data.data);
+    setImage(res.data.data.image.url);
+  };
+ 
+  useEffect(() => {
+    getCurrentUserData();
+  });
 
 
 
@@ -49,8 +60,13 @@ const Header = () => {
 
   const currentUser = getCurrentUser();
   const AuthButtons = () => {
-    if ( currentUser) {
+    if (image === null) {
       return (
+      <div className="header-users"> 
+       <div>
+       <Link to={`/users/${user.id}/edit`}><img src={Image} alt="" /></Link>
+        </div>
+        <div>
         <Button
           color='inherit'
           className={classes.linkBtn}
@@ -58,8 +74,27 @@ const Header = () => {
         >
           Sign out
         </Button>
+        </div>
+        </div>
       );
-    } else {
+    } else if (currentUser) {
+      return (
+        <div className="header-users"> 
+        <div>
+        <Link to={`/users/${user.id}/edit`}><img src={`http://localhost:8080${ image }`} alt="" /></Link>
+         </div>
+         <div>
+         <Button
+           color='inherit'
+           className={classes.linkBtn}
+           onClick={handleSignOut}
+         >
+           Sign out
+         </Button>
+         </div>
+         </div>
+      );
+    }  else {
       return (
         <>
           <Button
@@ -86,7 +121,7 @@ const Header = () => {
 
   const drawerItem = [
     { label: 'Home', path: '/home' },
-    { label: 'Create New Lists', path: `/lists` },
+    { label: 'Create New Lists', path: `/new/` },
     { label: 'Search Movies', path: '/movies' },
   ];
 

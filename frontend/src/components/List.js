@@ -1,5 +1,4 @@
 import React from "react";
-import image from "../image/movielist.jpeg";
 import "../stylesheets/List.scss";
 import { useState, useEffect } from "react";
 import { getCurrentUser } from './Auth';
@@ -31,34 +30,40 @@ const List = () => {
   });
 
 
-  const style = {
-    width: "100%",
-    height: "300px",
-    backgroundImage: `url(${image})`,
-    backgroundSize: "cover",
+  const handleOnDelete = async (id, event) => {
+    event.preventDefault();
+    const response = await api.delete(`http://localhost:8080/api/v1/lists/${id}.json`);
+    console.log(response);
+    const listItems = lists.filter((item) => item.id !== id);
+    setLists(listItems)
   };
 
   return (
     <div>
-      <div class="home-banner">
-        <div class="hb-container" style={style}>
+      <div className="home-banner">
+        <div className="hb-container">
           <h1>{user.nickname}'s Movie list</h1>
         </div>
       </div>
 
-      <div class="lists-container d-flex justify-content-around my-box-light flex-wrap mb-2">
+      <div className="lists-container d-flex justify-content-around my-box-light flex-wrap mb-2">
         {lists.map((list) => {
           return (
             <div>
-              <div class="card bg-dark text-white">
+              <div className="card bg-dark text-white">
                 <img src={`http://localhost:8080${ list.image_url.url }`} alt="" />
-                <div class="card-img-overlay">
-                  <h4 class="card-title">
+                <div className="card-img-overlay">
+                  <h4 className="card-title">
                     <Link to={`/lists/${list.id}/${user.id}`}>{list.name}</Link>
                   </h4>
                   <div class="item">
-                    <FaEdit />
-                    <FaTrash />
+                    <div className="icon-edit">
+                    <Link to={`/lists/${list.id}/edit`}><FaEdit /></Link>
+                    </div>
+                    <div className="icon-delete">
+                    <FaTrash 
+                  onClick={(e) => {handleOnDelete(list.id,  e)}}/>
+                  </div>
                   </div>
                 </div>
               </div>

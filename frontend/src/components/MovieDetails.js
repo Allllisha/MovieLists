@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import "../stylesheets/MovieDetails.scss";
+import moment from 'moment';
+import { FiDelete } from "react-icons/fi";
 
 const MovieDetails = () => {
   const [movie, setMovie] = useState([]);
@@ -41,6 +43,14 @@ const MovieDetails = () => {
     });
   };
 
+  const handleOnDelete = async (id, event) => {
+    event.preventDefault();
+    const response = await api.delete(`http://localhost:8080/api/v1/movie_reviews/${id}.json`);
+    console.log(response);
+    const reviewItems = review.filter((item) => item.id !== id);
+    setReview(reviewItems)
+  };
+
   const navigate = useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -65,12 +75,7 @@ const MovieDetails = () => {
     sendPostRequest();
   };
 
-
-
-
-
-
-
+  
 
   const star = "⭐";
 
@@ -119,7 +124,15 @@ const MovieDetails = () => {
                     <div>{review.comment}</div>
                   </div>
                   <div className="time-delete">
-                  <p>{review.created_at}</p>
+                  <div className="time-destroy">
+                  <p>{moment(review.created_at).format('D MMMM YYYY HH:mm')}</p>
+                  <div className="trash-item">
+                  < FiDelete
+                   onClick={(e) => {handleOnDelete(review.id,  e)}}
+                   />
+                  </div>
+                  </div>
+                  <hr />
                   </div>
                 </div>
               );
