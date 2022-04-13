@@ -36,8 +36,10 @@ const List = () => {
     console.log(response);
     const listItems = lists.filter((item) => item.id !== id);
     setLists(listItems)
+    
   };
 
+  console.log(user.id)
   return (
     <div>
       <div className="home-banner">
