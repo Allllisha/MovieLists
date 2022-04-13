@@ -30,7 +30,7 @@
     color: white;
 
     &:hover{
-      color: red;
+      color: #b1354c;
     }
   }
 
@@ -110,7 +110,7 @@ p{
    color: white;
 
    &:hover{
-    color: red;
+    color: #b1354c;
   }
  }
 
@@ -119,6 +119,38 @@ p{
 .icon-delete{
   margin-right: 10px;
   &:hover{
-    color: red;
+    color: #b1354c;
+  }
+}
+
+.lists-container{
+  margin-top: 40px;
+}
+
+.follow-button{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+
+  button{
+    &:hover{
+      background-color: #b1354c;
+    }
+  }
+}
+
+.unfollow-button{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  
+
+  button{
+    background-color: #b1354c;
+    &:hover{
+      background-color: #7535b1;
+    }
   }
 }

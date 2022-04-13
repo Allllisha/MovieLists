@@ -15,4 +15,9 @@ json.list_reviews do
   end
 end
 
+json.list_followers do 
+  json.array!(list.list_followers) do |list_follower|  
+    json.partial!(list_follower)
+  end
+end
 

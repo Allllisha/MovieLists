@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
 import React, { useState, useEffect, createContext } from "react";
 import Home from "./Home";
 import UserEdit from "./UserEdit";
+import UserPage from "./UserPage";
 import Movie from "./Movie";
 import Page from "./Page";
 import List from "./List";
@@ -58,7 +59,6 @@ const Main = () => {
     handleGetCurrentUser();
   }, [setCurrentUser]);
 
-  // const userSignedIn = signIn();
   const currentUsers = getCurrentUser();
   const navigate = useNavigate();
   const PrivateRoute = ({ children }) => {
@@ -99,6 +99,15 @@ const Main = () => {
               </PrivateRoute>
             }
           />
+          <Route
+            exact
+            path="/users/:userId/"
+            element={
+              <PrivateRoute>
+                <UserPage />
+              </PrivateRoute>
+            }
+          />
            <Route
             exact
             path="/users/:userId/edit"
@@ -119,7 +128,7 @@ const Main = () => {
           />
           <Route
             exact
-            path="/lists"
+            path="/lists/:userId"
             element={
               <PrivateRoute>
                 <List />

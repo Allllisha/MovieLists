@@ -15,6 +15,7 @@ Rails.application.routes.draw do
       resources :genres
       resources :lists 
       resources :list_reviews
+      resources :list_followers
       resources :bookmarks 
     end
   end

@@ -37,7 +37,7 @@ const Home = () => {
             </div>
             <div className="nickname">
               <h5>
-                <Link to={`/users/${user.id}/edit`}>{user.nickname}</Link>
+                <Link to={`/users/${user.id}`}>{user.nickname}</Link>
               </h5>
             </div>
           </div>
@@ -53,7 +53,7 @@ const Home = () => {
             </div>
             <div className="nickname">
               <h5>
-                <Link to={`/users/${user.id}/edit`}>{user.nickname}</Link>
+                <Link to={`/users/${user.id}`}>{user.nickname}</Link>
               </h5>
             </div>
           </div>
@@ -91,7 +91,7 @@ const Home = () => {
             </h1>
           </div>
           <h5>
-            <Link to={`/lists`}>All Lists</Link>
+            <Link to={`/lists/${user.id}`}>All Lists</Link>
           </h5>
         </div>
         <div class="part-3">

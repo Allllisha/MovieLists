@@ -5,6 +5,7 @@ mount_uploader :image, ImageUploader
                     :recoverable, :rememberable, :validatable
             include DeviseTokenAuth::Concerns::User
   has_many :lists, dependent: :destroy
+  has_many :list_followers, dependent: :destroy
   has_many :movies, through: :bookmarks  
   validates :name, presence: true
 end
