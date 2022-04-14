@@ -1,83 +1,53 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
-import { api } from "./Axios";
-// import Form from "react-bootstrap/Form";
-// import Button from "react-bootstrap/Button";
 import "../stylesheets/Movie.scss";
 import { FaStar } from "react-icons/fa";
+import algoliasearch from "algoliasearch/lite";
+import { InstantSearch, SearchBox, Hits } from "react-instantsearch-dom";
+import 'instantsearch.css/themes/algolia-min.css';
 
 const Movie = () => {
-  const [movies, setMovies] = useState([]);
-  const getMoviesData = async () => {
-    const res = await api.get("http://localhost:8080/api/v1/movies.json");
-    console.log(res);
-    setMovies(res.data);
-  };
 
-  useEffect(() => {
-    getMoviesData();
-  }, []);
+  const searchClient = algoliasearch(
+    "O9HDSVJ69E",
+    "c5fdb5ee8f413cf23f533da3ed603050"
+  );
 
-  const Search = (props) => {
-    const [searchValue, setSearchValue] = useState("");
-
-    const handleSearchInputChanges = (e) => {
-      setSearchValue(e.target.value);
-    }
-  
-    const resetInputField = () => {
-      setSearchValue("")
-    }
-  
-    const callSearchFunction = (e) => {
-      e.preventDefault();
-      props.search(searchValue);
-      resetInputField();
-    }
-
+  const Hit = ({ hit }) => {
     return (
-      <form className="search">
-      <input
-        value={searchValue}
-        onChange={handleSearchInputChanges}
-        type="text"
-      />
-      <input onClick={callSearchFunction} type="submit" value="SEARCH" />
-    </form>
+      <div className="container-glass">
+        <img src={hit.poster_url} alt="" />
+        <div className="movie-card-text">
+          <div className="movie-card-description">
+            <div className="movie-rating">
+              <h2>
+                <FaStar />
+              </h2>
+              <h3>{hit.rating}</h3>
+              <h4>/10</h4>
+            </div>
+          </div>
+          <div className="movie-title-card">
+            <h3>
+              <Link to={`/movies/${hit.objectID}`}>{hit.title}</Link>
+            </h3>
+          </div>
+          <button class="btn">Discover</button>
+        </div>
+      </div>
     );
   };
 
   return (
     <div>
-      <Search />
-      <div className="movie-container"></div>
-      <div className="movie-wrapper">
-        {movies.map((movie) => {
-          return (
-            <div className="container-glass">
-              <img src={movie.poster_url} alt="" />
-              <div className="movie-card-text">
-                <div className="movie-card-description">
-                  <div className="movie-rating">
-                    <h2>
-                      <FaStar />
-                    </h2>
-                    <h3>{movie.rating}</h3>
-                    <h4>/10</h4>
-                  </div>
-                </div>
-                <div className="movie-title-card">
-                  <h3>
-                    <Link to={`/movies/${movie.id}/`}>{movie.title}</Link>
-                  </h3>
-                </div>
-                <button class="btn">Discover</button>
-              </div>
-            </div>
-          );
-        })}
-      </div>
+      <InstantSearch indexName="MovieList" searchClient={searchClient}>
+        <div className="movie-container">
+        <SearchBox />
+        </div>
+        <div className="movie-wrapper">
+          <Hits hitComponent={Hit} />
+          </div>  
+      </InstantSearch>
     </div>
   );
 };
