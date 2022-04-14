@@ -1,14 +1,16 @@
 import React from "react";
 import "../stylesheets/List.scss";
 import { useState, useEffect } from "react";
-import { getCurrentUser } from './Auth';
+import { getCurrentUser } from "./Auth";
 import { api } from "./Axios";
 import { Link } from "react-router-dom";
-import { FaEdit } from "react-icons/fa";
-import { FaTrash } from "react-icons/fa";
+import Button from "react-bootstrap/Button";
+import {  useParams } from "react-router-dom";
 
 const List = () => {
   const [lists, setLists] = useState([]);
+  const { userId } = useParams();
+
   const getListsData = async () => {
     const res = await api.get("http://localhost:8080/api/v1/lists.json");
     console.log(res.data);
@@ -19,32 +21,30 @@ const List = () => {
     getListsData();
   }, []);
 
-  const [user, setCurrentUser] = useState([])
+  const [user, setCurrentUser] = useState([]);
   const getCurrentUserData = async () => {
     const res = await getCurrentUser();
     setCurrentUser(res.data.data);
   };
- 
+
   useEffect(() => {
     getCurrentUserData();
   });
-
-
-  const handleOnDelete = async (id, event) => {
+   
+  const handleOnFollow= async (id, event) => {
     event.preventDefault();
-    const response = await api.delete(`http://localhost:8080/api/v1/lists/${id}.json`);
+    let params = new FormData();
+    params.append("list_id", id);
+    params.append("user_id", userId);
+    const response = await api.post(`http://localhost:8080/api/v1/list_followers.json`, params);
     console.log(response);
-    const listItems = lists.filter((item) => item.id !== id);
-    setLists(listItems)
-    
   };
-
-  console.log(user.id)
+ 
   return (
     <div>
       <div className="home-banner">
         <div className="hb-container">
-          <h1>{user.nickname}'s Movie list</h1>
+          <h1>All Movie list</h1>
         </div>
       </div>
 
@@ -53,19 +53,20 @@ const List = () => {
           return (
             <div>
               <div className="card bg-dark text-white">
-                <img src={`http://localhost:8080${ list.image_url.url }`} alt="" />
+                <img
+                  src={`http://localhost:8080${list.image_url.url}`}
+                  alt=""
+                />
                 <div className="card-img-overlay">
                   <h4 className="card-title">
                     <Link to={`/lists/${list.id}/${user.id}`}>{list.name}</Link>
                   </h4>
-                  <div class="item">
-                    <div className="icon-edit">
-                    <Link to={`/lists/${list.id}/edit`}><FaEdit /></Link>
-                    </div>
-                    <div className="icon-delete">
-                    <FaTrash 
-                  onClick={(e) => {handleOnDelete(list.id,  e)}}/>
-                  </div>
+                  <div className="follow-button">
+                  <Button
+                   onClick={(e) => {
+                    handleOnFollow(list.id, e);
+                  }}
+                  >+ Follow</Button>
                   </div>
                 </div>
               </div>
