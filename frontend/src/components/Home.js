@@ -1,6 +1,5 @@
 import React from "react";
 import "../stylesheets/Home.scss";
-import Image from "../image/cinema.jpeg";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { getCurrentUser } from "./Auth";
@@ -27,17 +26,13 @@ const Home = () => {
     if ( image === null ) {
       return (
         <div className="welcome-user">
-          <img
-            src={Image}
-            alt=""
-          />
           <div className="user-info">
             <div className="welcome">
-              <h5>Hi,</h5>
+              <h5>Welcome,</h5>
             </div>
             <div className="nickname">
               <h5>
-                <Link to={`/users/${user.id}`}>{user.nickname}</Link>
+                <Link to={`/users/profile`}>{user.nickname}</Link>
               </h5>
             </div>
           </div>
@@ -46,14 +41,13 @@ const Home = () => {
     } else if (currentUser) {
       return (
         <div class="welcome-user">
-          <img src={`http://localhost:8080${image}`} alt="" />
           <div className="user-info">
             <div className="welcome">
               <h5>Welcome,</h5>
             </div>
             <div className="nickname">
               <h5>
-                <Link to={`/users/${user.id}`}>{user.nickname}</Link>
+                <Link to={`/users/profile`}>{user.nickname}</Link>
               </h5>
             </div>
           </div>
@@ -70,9 +64,7 @@ const Home = () => {
 
   return (
     <div>
-      <div className="user-info-container">
         <WelcomeMessage />
-      </div>
       <div class="action-container">
         <div class="part-1">
           <div class="icon">
@@ -81,7 +73,7 @@ const Home = () => {
             </h1>
           </div>
           <h5>
-            <Link to={`/movies`}>Search Movies</Link>
+            <Link to={`/search_movies`}>Search Movies</Link>
           </h5>
         </div>
         <div class="part-2">
@@ -91,7 +83,7 @@ const Home = () => {
             </h1>
           </div>
           <h5>
-            <Link to={`/lists/${user.id}`}>All Lists</Link>
+            <Link to={`/lists`}>All Lists</Link>
           </h5>
         </div>
         <div class="part-3">
@@ -101,7 +93,7 @@ const Home = () => {
             </h1>
           </div>
           <h5>
-            <Link to={`/new/${user.id}`}>New Lists</Link>
+            <Link to={`/new`}>New Lists</Link>
           </h5>
         </div>
       </div>

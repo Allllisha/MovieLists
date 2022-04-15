@@ -32,10 +32,10 @@
   }
 
  a{
-   color: #b1354c;
+   color: white;
 
    &:hover{
-    color: #201133;
+    color: #391f5e;
    }
  }
 
@@ -52,10 +52,10 @@
 
 .action-container{
   display: flex;
-  margin-top: 30px;
+  margin-top: 60px;
   margin-right: 30px;
   margin-left: 30px;
-  margin-bottom: 50px;
+  margin-bottom: 200px;
   justify-content: space-around;
 
   h5{

@@ -131,7 +131,7 @@ const SignForm = (props) => {
               <Box textAlign='center' className={classes.box}>
                 <Typography variant='body2'>
                   Don't have an account? &nbsp;
-                  <Link to='/signup' className={classes.link}>
+                  <Link to='/sign_up' className={classes.link}>
                     Sign Up now!
                   </Link>
                 </Typography>

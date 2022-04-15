@@ -5,14 +5,14 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-// import { getCurrentUser } from "./Auth";
+import { getCurrentUser } from "./Auth";
 import "../stylesheets/MovieDetails.scss";
 import "../stylesheets/ListDetails.scss";
 import { FiDelete } from "react-icons/fi";
 import moment from "moment";
 import Slider from "react-slick";
-import { FaEdit } from "react-icons/fa";
 import { FaTrash } from "react-icons/fa";
+import Image from "../image/cinema.jpeg";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "swiper/scss";
@@ -21,22 +21,33 @@ import "swiper/scss/pagination";
 
 const ListDetails = () => {
   const [list, setList] = useState([]);
-  const { listId, userId } = useParams();
+  const { listId } = useParams();
   // const [bookmarks, setBookmarks] = useState([]);
   const [review, setReview] = useState({
     rating: "",
     comment: "",
-    user_id: userId,
-    list_id: listId,
+    user_id: "",
+    list_id: "",
   });
   const getListsData = async () => {
-    const res = await api.get(`http://localhost:8080/api/v1/lists/1.json`);
+    const res = await api.get(`http://localhost:8080/api/v1/lists/${listId}.json`);
     setList(res.data);
   };
 
   useEffect(() => {
     getListsData();
   });
+
+  const [user, setCurrentUser] = useState([]);
+  const getCurrentUserData = async () => {
+    const res = await getCurrentUser();
+    setCurrentUser(res.data.data);
+  };
+
+  useEffect(() => {
+    getCurrentUserData();
+  });
+
 
   const handleOnChange = (event) => {
     const value = event.target.value;
@@ -49,21 +60,20 @@ const ListDetails = () => {
   const navigate = useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
-    const reviewData = {
-      rating: review.rating,
-      comment: review.comment,
-      user_id: review.user_id,
-      list_id: review.list_id,
-    };
 
     const sendPostRequest = async () => {
       try {
+        let params = new FormData();
+        params.append("rating", review.rating);
+        params.append("comment", review.comment);
+        params.append("user_id", user.id);
+        params.append("list_id", listId);
         const response = await api.post(
           `http://localhost:8080/api/v1/list_reviews.json`,
-          reviewData
+          params
         );
         console.log(response.data);
-        navigate(`lists/${listId}/${userId}`);
+        navigate(`/lists/${list.id}`);
       } catch (err) {
         console.error(err);
       }
@@ -71,26 +81,8 @@ const ListDetails = () => {
     sendPostRequest();
   };
 
-  // const currentUser = getCurrentUser();
-  // const EditAndDelete = () => {
-  //   if ( currentUser ) {
-  //     return (
-  //       <div className="edit-delete">
-  //         <div className="edit-item">
-  //         <FaEdit/>
-  //         </div>
-  //         <div className="delete-item">
-  //         <FaTrash
-  //         />
-  //         </div>
-  //       </div>
-  //     );
-  //   } else {
-  //     return (
-  //      <div></div>
-  //     );
-  //   }
-  // };
+
+
 
   const handleOnMovieDelete = async (id, event) => {
     event.preventDefault();
@@ -120,6 +112,21 @@ const ListDetails = () => {
     setReview(reviewItems);
   };
 
+  const AddMovie = () => {
+    if ( list.user_id === user.id ) {
+      return (
+        <Link to={`/bookmarks/lists/${listId}`}>
+        <Button>Add Movie</Button>
+      </Link>
+      );
+    } else {
+      return (
+        <>
+        </>
+      );
+    }
+  };
+
   return (
     <div>
       <Slider {...settings}>
@@ -142,15 +149,10 @@ const ListDetails = () => {
                     <h6>Comment from {list.user_name}</h6>
 
                     <div className="edit-delete">
-                      <div className="edit-item">
-                        <FaEdit />
-                      </div>
                       <div className="delete-item">
-                        <FaTrash 
-                        onClick={(e) => {
-                          handleOnMovieDelete(bookmark.id, e);
-                        }}
-                        />
+                      {list.user_id === user.id 
+                    ? <FaTrash onClick={(e) => {handleOnMovieDelete(bookmark.id, e);}}/>
+                    : <> </>}  
                       </div>
                     </div>
 
@@ -169,9 +171,7 @@ const ListDetails = () => {
       </Slider>
 
       <div className="bookmark-button">
-        <Link to={`/bookmarks/lists/${listId}`}>
-          <Button>Add Movie</Button>
-        </Link>
+      <AddMovie />
       </div>
 
       <div className="comment-container">
@@ -180,7 +180,10 @@ const ListDetails = () => {
             return (
               <div className="comments">
                 <div className="reviewer-info">
-                  <div className="reviewer-foto"><img src={`http://localhost:8080${ review.user_image.url }`} alt="" /></div>
+                  <div className="reviewer-foto">
+                  {review.user_image.url
+                    ? <img src={`http://localhost:8080${ review.user_image.url }`} alt="" />
+                    : <img src={Image} alt="" />}</div>
                   <div className="reviewer-name">{review.user_name}</div>
                   </div>
                 <div className="comment-line">
@@ -193,11 +196,9 @@ const ListDetails = () => {
                       {moment(review.created_at).format("D MMMM YYYY HH:mm")}
                     </p>
                     <div className="trash-item">
-                      <FiDelete
-                        onClick={(e) => {
-                          handleOnDelete(review.id, e);
-                        }}
-                      />
+                    {list.user_id === user.id 
+                    ? <FiDelete onClick={(e) => {handleOnDelete(review.id, e)}}/>
+                    : <> </>}
                     </div>
                   </div>
                   <hr />

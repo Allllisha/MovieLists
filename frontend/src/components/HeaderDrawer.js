@@ -1,8 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import {  useState, useEffect } from 'react';
 import { createStyles, makeStyles, useTheme } from '@material-ui/core/styles';
-import {  getCurrentUser } from './Auth';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import {
@@ -41,20 +39,9 @@ const useStyles = makeStyles((theme) =>
 
 const HeaderDrawer = (props) => {
   const { open, handleDrawerToggle, drawerItem } = props;
-   const [user, setCurrentUser] = useState([])
+
   const classes = useStyles();
   const theme = useTheme();
-
-  const getCurrentUserData = async () => {
-    const res = await getCurrentUser();
-    setCurrentUser(res.data.data);
-  };
- 
-  useEffect(() => {
-    getCurrentUserData();
-  });
-
-
 
   return (
     <Drawer

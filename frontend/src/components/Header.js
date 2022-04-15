@@ -81,7 +81,7 @@ const Header = () => {
       return (
         <div className="header-users"> 
         <div>
-        <Link to={`/users/${user.id}/edit`}><img src={`http://localhost:8080${ image }`} alt="" /></Link>
+        <Link to={`/users/profile`}><img src={`http://localhost:8080${ image }`} alt="" /></Link>
          </div>
          <div>
          <Button
@@ -121,8 +121,8 @@ const Header = () => {
 
   const drawerItem = [
     { label: 'Home', path: '/home' },
-    { label: 'Create New Lists', path: `/new/` },
-    { label: 'Search Movies', path: '/movies' },
+    { label: 'Create New Lists', path: `/new` },
+    { label: 'Search Movies', path: '/search_movies' },
   ];
 
   const [open, setOpen] = useState(false);

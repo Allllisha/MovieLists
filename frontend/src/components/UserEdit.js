@@ -39,12 +39,6 @@ const UserEdit = () => {
   const navigate = useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
-    // const listsData = {
-    // name: newList.name,
-    // user_id: newList.user_id,
-    // image_url: image.image_url,
-    // };
-
    
     const sendPostRequest = async () => {
       try {
