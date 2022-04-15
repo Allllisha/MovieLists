@@ -362,7 +362,8 @@ li {
 }
 
 .modal-content {
-  background-color: #754dad;
+  background-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(5px);
 }
 
 .modal-title {
@@ -374,4 +375,18 @@ li {
 
 .btn-close{
   color: white;
+}
+
+.modal-poster{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  img{
+    border-radius: 0%;
+    height: 200px;
+    width: 150px;
+    object-fit: cover;
+  }
 }

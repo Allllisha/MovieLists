@@ -51,7 +51,7 @@ const Header = () => {
       Cookies.remove('_access_token');
       Cookies.remove('_client');
       Cookies.remove('_uid');
-      navigate('/sign_in');
+      navigate('/');
       console.log('succeeded in sign out');
     } catch (e) {
       console.log(e);

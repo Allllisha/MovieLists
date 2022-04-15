@@ -56,7 +56,7 @@ const ListsEdit = () => {
         params.append("name", newList.name);
         params.append("user_id", user.id);
         const response = await api.patch(
-          `http://localhost:8080/api/v1/lists/${listId}.json`,
+          `/lists/${listId}.json`,
           params,
           { headers: { "content-type": "multipart/form-data" } }
         );
@@ -72,7 +72,7 @@ const ListsEdit = () => {
   return (
     <div className="bg">
       <div className="glass">
-        <div class="form-container">
+        <div className="form-container">
           <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3">
               <Form.Label>Name</Form.Label>

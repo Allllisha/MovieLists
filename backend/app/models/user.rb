@@ -15,4 +15,5 @@ end
   has_many :list_followers, dependent: :destroy
   has_many :movies, through: :bookmarks  
   validates :name, presence: true
+  validates :nickname, presence: true
 end

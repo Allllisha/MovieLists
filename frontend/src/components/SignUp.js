@@ -1,11 +1,8 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
-// context
 import { AuthContext } from './App';
-// api
 import { signUp } from './Auth';
-// component
 import SignForm from './SignForm';
 
 const SignUp = () => {
@@ -21,8 +18,6 @@ const SignUp = () => {
 
   const signUpHandleSubmit = async (e) => {
     e.preventDefault();
-
-
     const generateParams = () => {
       const signUpParams = {
         name: name,

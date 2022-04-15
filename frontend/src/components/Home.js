@@ -40,7 +40,7 @@ const Home = () => {
       );
     } else if (currentUser) {
       return (
-        <div class="welcome-user">
+        <div className="welcome-user">
           <div className="user-info">
             <div className="welcome">
               <h5>Welcome,</h5>
@@ -65,9 +65,9 @@ const Home = () => {
   return (
     <div>
         <WelcomeMessage />
-      <div class="action-container">
-        <div class="part-1">
-          <div class="icon">
+      <div className="action-container">
+        <div className="part-1">
+          <div className="icon">
             <h1>
               <FaSearch />
             </h1>
@@ -76,8 +76,8 @@ const Home = () => {
             <Link to={`/search_movies`}>Search Movies</Link>
           </h5>
         </div>
-        <div class="part-2">
-          <div class="icon">
+        <div className="part-2">
+          <div className="icon">
             <h1>
               <FaFilm />
             </h1>
@@ -86,8 +86,8 @@ const Home = () => {
             <Link to={`/lists`}>All Lists</Link>
           </h5>
         </div>
-        <div class="part-3">
-          <div class="icon">
+        <div className="part-3">
+          <div className="icon">
             <h1>
               <FaFileVideo />
             </h1>

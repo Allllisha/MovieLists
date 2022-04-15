@@ -8,19 +8,15 @@ import Button from "react-bootstrap/Button";
 
 const List = () => {
   const [lists, setLists] = useState([]);
-  // const [listFollower, setlistFollower] = useState([]);
 
   const getListsData = async () => {
-    const res = await api.get("http://localhost:8080/api/v1/lists.json");
+    const res = await api.get("/lists.json");
     setLists(res.data);
-    // setlistFollower(res.data.list_followers)
   };
 
   useEffect(() => {
     getListsData();
   }, []);
-
-
 
   const [user, setCurrentUser] = useState([]);
   const getCurrentUserData = async () => {
@@ -31,25 +27,15 @@ const List = () => {
   useEffect(() => {
     getCurrentUserData();
   });
-   
-  const handleOnFollow= async (id, event) => {
+
+  const handleOnFollow = async (id, event) => {
     event.preventDefault();
     let params = new FormData();
     params.append("list_id", id);
     params.append("user_id", user.id);
-    const response = await api.post(`http://localhost:8080/api/v1/list_followers.json`, params);
+    const response = await api.post(`/list_followers.json`, params);
     console.log(response);
   };
-
-
-  // const handleOnClick= async (id, event) => {
-  //   event.preventDefault();
-  //   let params = new FormData();
-  //   params.append("list_id", id);
-  //   params.append("user_id", userId);
-  //   const response = await api.post(`http://localhost:8080/api/v1/list_followers.json`, params);
-  //   console.log(response);
-  // };
 
   return (
     <div>
@@ -73,10 +59,23 @@ const List = () => {
                     <Link to={`/lists/${list.id}`}>{list.name}</Link>
                   </h4>
                   <div className="follow-button">
-                  {user.id === list.id 
-                    ? <Button onClick={(e) => {handleOnFollow(list.id,  e)}}>Followed</Button>
-                    : <Button onClick={(e) => {handleOnFollow(list.id,  e)}}>Add</Button>}
-                  
+                    {user.id === list.id ? (
+                      <Button
+                        onClick={(e) => {
+                          handleOnFollow(list.id, e);
+                        }}
+                      >
+                        Followed
+                      </Button>
+                    ) : (
+                      <Button
+                        onClick={(e) => {
+                          handleOnFollow(list.id, e);
+                        }}
+                      >
+                        Add
+                      </Button>
+                    )}
                   </div>
                 </div>
               </div>

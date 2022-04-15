@@ -26,11 +26,8 @@ const UserPage = () => {
     getCurrentUserData();
   });
 
-
   const getListsData = async () => {
-    const res = await api.get(
-      `http://localhost:8080/api/v1/users/${user.id}.json`
-    );
+    const res = await api.get(`/users/${user.id}.json`);
     setLists(res.data.lists);
     setImage(res.data.image.url);
     setFollows(res.data.list_followers);
@@ -40,21 +37,16 @@ const UserPage = () => {
     getListsData();
   });
 
-
-
-
   const currentUser = getCurrentUser();
   const WelcomeMessage = () => {
-    if ( image === null ) {
+    if (image === null) {
       return (
         <div className="welcome-user">
-          <img
-            src={Image}
-            alt=""
-          />
+          <Link to={`/users/${user.id}/edit`}>
+            <img src={Image} alt="" />
+          </Link>
           <div className="user-info">
-            <div className="welcome">
-            </div>
+            <div className="welcome"></div>
             <div className="nickname">
               <h5>
                 <Link to={`/users/${user.id}/edit`}>{user.nickname}</Link>
@@ -65,11 +57,10 @@ const UserPage = () => {
       );
     } else if (currentUser) {
       return (
-        <div class="welcome-user">
+        <div className="welcome-user">
           <img src={`http://localhost:8080${image}`} alt="" />
           <div className="user-info">
-            <div className="welcome">
-            </div>
+            <div className="welcome"></div>
             <div className="nickname">
               <h5>
                 <Link to={`/users/${user.id}/edit`}>{user.nickname}</Link>
@@ -87,12 +78,9 @@ const UserPage = () => {
     }
   };
 
-
   const handleOnDelete = async (id, event) => {
     event.preventDefault();
-    const response = await api.delete(
-      `http://localhost:8080/api/v1/lists/${id}.json`
-    );
+    const response = await api.delete(`/lists/${id}.json`);
     console.log(response);
     const listItems = lists.filter((item) => item.id !== id);
     setLists(listItems);
@@ -100,9 +88,7 @@ const UserPage = () => {
 
   const handleOnUnFollow = async (id, event) => {
     event.preventDefault();
-    const response = await api.delete(
-      `http://localhost:8080/api/v1/list_followers/${id}.json`
-    );
+    const response = await api.delete(`/list_followers/${id}.json`);
     console.log(response);
     const followItems = follows.filter((item) => item.id !== id);
     setFollows(followItems);
@@ -112,7 +98,7 @@ const UserPage = () => {
     <div>
       <div className="home-banner">
         <div className="hb-container">
-        <WelcomeMessage />
+          <WelcomeMessage />
         </div>
       </div>
 
@@ -134,9 +120,7 @@ const UserPage = () => {
                     />
                     <div className="card-img-overlay">
                       <h4 className="card-title">
-                        <Link to={`/lists/${list.id}`}>
-                          {list.name}
-                        </Link>
+                        <Link to={`/lists/${list.id}`}>{list.name}</Link>
                       </h4>
                       <div class="item">
                         <div className="icon-edit">
@@ -160,7 +144,7 @@ const UserPage = () => {
           </div>
         </TabPanel>
         <TabPanel>
-        <div className="lists-container d-flex justify-content-around my-box-light flex-wrap mb-2">
+          <div className="lists-container d-flex justify-content-around my-box-light flex-wrap mb-2">
             {follows.map((follow) => {
               return (
                 <div>
@@ -171,17 +155,19 @@ const UserPage = () => {
                     />
                     <div className="card-img-overlay">
                       <h4 className="card-title">
-                        <Link to={`/lists/${follow.list_id}/${user.id}`}>
+                        <Link to={`/lists/${follow.list_id}`}>
                           {follow.list_name}
                         </Link>
                       </h4>
                       <div className="unfollow-button">
-                      <Button
-                         onClick={(e) => {
-                          handleOnUnFollow(follow.id, e);
-                        }}
-                      >Unfollow</Button>
-                  </div>
+                        <Button
+                          onClick={(e) => {
+                            handleOnUnFollow(follow.id, e);
+                          }}
+                        >
+                          Unfollow
+                        </Button>
+                      </div>
                     </div>
                   </div>
                 </div>

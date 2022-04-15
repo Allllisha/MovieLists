@@ -5,7 +5,7 @@ import algoliasearch from 'algoliasearch';
 export const GenerateIndex = async () => {
   const [movies, setMovies] = useState([]);
   const getMoviesData = async () => {
-    const res = await api.get("http://localhost:8080/api/v1/movies.json");
+    const res = await api.get("/movies.json");
     setMovies(res.data);
   };
 
@@ -23,7 +23,7 @@ export const GenerateIndex = async () => {
       rating: movie.rating,
     };
   });
-  const client = algoliasearch('O9HDSVJ69E', '00a61b7df8aad363189a919bb0cf4bae');
+  const client = algoliasearch(`${process.env.REACT_APP_ALGID}`, `${process.env.REACT_APP_ALADMIN}`);
   const index = client.initIndex('MovieList');
   await index.saveObjects(objects, { autoGenerateObjectIDIfNotExist: true });
 };

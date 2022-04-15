@@ -30,7 +30,7 @@ const ListDetails = () => {
     list_id: "",
   });
   const getListsData = async () => {
-    const res = await api.get(`http://localhost:8080/api/v1/lists/${listId}.json`);
+    const res = await api.get(`/lists/${listId}.json`);
     setList(res.data);
   };
 
@@ -69,7 +69,7 @@ const ListDetails = () => {
         params.append("user_id", user.id);
         params.append("list_id", listId);
         const response = await api.post(
-          `http://localhost:8080/api/v1/list_reviews.json`,
+          `/list_reviews.json`,
           params
         );
         console.log(response.data);
@@ -87,7 +87,7 @@ const ListDetails = () => {
   const handleOnMovieDelete = async (id, event) => {
     event.preventDefault();
     const response = await api.delete(
-      `http://localhost:8080/api/v1/bookmarks/${id}.json`
+      `/bookmarks/${id}.json`
     );
     console.log(response);
     const bookmarkItems = list.bookmarks.filter((item) => item.id !== id);
@@ -105,7 +105,7 @@ const ListDetails = () => {
   const handleOnDelete = async (id, event) => {
     event.preventDefault();
     const response = await api.delete(
-      `http://localhost:8080/api/v1/list_reviews/${id}.json`
+      `/list_reviews/${id}.json`
     );
     console.log(response);
     const reviewItems = review.filter((item) => item.id !== id);
