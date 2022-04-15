@@ -7,18 +7,16 @@ import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { api } from "./Axios";
 
-
 const UserEdit = () => {
   const { userId } = useParams();
   const [user, setUser] = useState({
     nickname: "",
-    user_id: userId, 
+    user_id: userId,
   });
 
   const [image, setImage] = useState({
     images: "",
   });
-
 
   const handleOnChange = (event) => {
     const value = event.target.value;
@@ -39,14 +37,16 @@ const UserEdit = () => {
   const navigate = useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
-   
+
     const sendPostRequest = async () => {
       try {
         let params = new FormData();
         params.append("image", image.images);
         params.append("nickname", user.nickname);
         params.append("user_id", user.user_id);
-        const response = await api.patch(`http://localhost:8080/api/v1/users/${userId}.json`, params, { headers: { "content-type": "multipart/form-data" }});
+        const response = await api.patch(`/users/${userId}.json`, params, {
+          headers: { "content-type": "multipart/form-data" },
+        });
         console.log(response.data);
         navigate("/home");
       } catch (err) {
@@ -56,44 +56,43 @@ const UserEdit = () => {
     sendPostRequest();
   };
 
-
-  return(
+  return (
     <div className="bg">
-    <div className="glass">
-    <div class="form-container">
-      <Form onSubmit={handleSubmit}>
-        <Form.Group className="mb-3">
-          <Form.Label>Username</Form.Label>
-          <Form.Control
-            type="nickname"
-            placeholder="username"
-            name="nickname"
-            value={user.nickname}
-            onChange={handleOnChange}
-          />
-        </Form.Group>
-        <div className="mb-3">
-                    <label htmlFor="formFileMultiple" className="form-label">
-                      Images
-                    </label>
-                    <input
-                      className="form-control"
-                      name="images"
-                      type="file"
-                      id="formFileMultiple"
-                      multiple
-                      value={user.images}
-                      onChange={handleOnFileChange}
-                    />
-                  </div>
-        <Button variant="primary" type="submit">
-          Submit
-        </Button>
-      </Form>
+      <div className="glass">
+        <div class="form-container">
+          <Form onSubmit={handleSubmit}>
+            <Form.Group className="mb-3">
+              <Form.Label>Username</Form.Label>
+              <Form.Control
+                type="nickname"
+                placeholder="username"
+                name="nickname"
+                value={user.nickname}
+                onChange={handleOnChange}
+              />
+            </Form.Group>
+            <div className="mb-3">
+              <label htmlFor="formFileMultiple" className="form-label">
+                Images
+              </label>
+              <input
+                className="form-control"
+                name="images"
+                type="file"
+                id="formFileMultiple"
+                multiple
+                value={user.images}
+                onChange={handleOnFileChange}
+              />
+            </div>
+            <Button variant="primary" type="submit">
+              Submit
+            </Button>
+          </Form>
+        </div>
+      </div>
     </div>
-    </div>
-    </div> 
-  )
-} 
+  );
+};
 
 export default UserEdit;

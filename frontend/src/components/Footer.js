@@ -3,7 +3,7 @@ import "../stylesheets/Page.scss";
 
 const Footer = () => {
   return(
-    <div class="footer-container">
+    <div className="footer-container">
          <footer className="sticky bottom-0 footer">
             <center>2022 Alllisha</center>
         </footer>

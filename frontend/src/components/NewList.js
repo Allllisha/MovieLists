@@ -56,7 +56,7 @@ const NewLists = () => {
         params.append("name", newList.name);
         params.append("user_id", user.id);
         const response = await api.post(
-          `http://localhost:8080/api/v1/lists.json`,
+          `/lists.json`,
           params,
           { headers: { "content-type": "multipart/form-data" } }
         );

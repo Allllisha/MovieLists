@@ -16,8 +16,8 @@ import "instantsearch.css/themes/algolia-min.css";
 const Movie = () => {
   const [user, setCurrentUser] = useState([]);
   const searchClient = algoliasearch(
-    "O9HDSVJ69E",
-    "c5fdb5ee8f413cf23f533da3ed603050"
+    `${process.env.REACT_APP_ALGID}`,
+    `${process.env.REACT_APP_ALGAPP}`
   );
 
   const getCurrentUserData = async () => {
@@ -29,10 +29,8 @@ const Movie = () => {
     getCurrentUserData();
   });
 
-
   const Hit = ({ hit }) => {
     const [modalShow, setModalShow] = useState(false);
- 
 
     const MyVerticallyCenteredModal = (props) => {
       const [lists, setLists] = useState([]);
@@ -41,10 +39,9 @@ const Movie = () => {
         list_id: "",
         comment: "",
       });
-    
 
       const getMylistData = async () => {
-        const res = await api.get(`http://localhost:8080/api/v1/users/${user}.json`);
+        const res = await api.get(`/users/${user}.json`);
         setLists(res.data.lists);
       };
 
@@ -59,7 +56,6 @@ const Movie = () => {
           [event.target.name]: value,
         });
       };
-    
 
       const navigate = useNavigate();
       const handleSubmit = (event) => {
@@ -69,10 +65,10 @@ const Movie = () => {
           list_id: bookmark.list_id,
           comment: bookmark.comment,
         };
-    
+
         const sendPostRequest = async () => {
           try {
-            const response = await api.post(`http://localhost:8080/api/v1/bookmarks.json`, BookmarksData);
+            const response = await api.post(`/bookmarks.json`, BookmarksData);
             console.log(response);
             navigate(`/search_movies`);
           } catch (err) {
@@ -95,6 +91,9 @@ const Movie = () => {
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
+            <div className="modal-poster">
+              <img src={hit.poster_url} alt="" />
+            </div>
             <Form onSubmit={handleSubmit}>
               <Form.Group className="mb-3">
                 <Form.Label>Comment</Form.Label>

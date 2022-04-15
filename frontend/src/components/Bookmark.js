@@ -17,7 +17,7 @@ const Bookmark = () => {
   });
 
   const getMoviesData = async () => {
-    const res = await api.get("http://localhost:8080/api/v1/movies.json");
+    const res = await api.get("/movies.json");
     setMovies(res.data);
   };
 
@@ -48,7 +48,7 @@ const Bookmark = () => {
 
     const sendPostRequest = async () => {
       try {
-        const response = await api.post(`http://localhost:8080/api/v1/bookmarks.json`, BookmarksData);
+        const response = await api.post(`/bookmarks.json`, BookmarksData);
         console.log(response);
         navigate(`/lists/${listId}`);
       } catch (err) {
