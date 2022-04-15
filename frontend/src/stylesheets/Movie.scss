@@ -329,6 +329,10 @@ li {
 
   a{
     color: white;
+
+    &:hover{
+      color: #391f5e;
+    }
   }
 }
 
@@ -344,3 +348,30 @@ li {
   background-size: cover;
 }
 
+
+.ais-Hits-list{
+  @media screen and (max-width: 767px) {
+   display: block!important;
+  }
+}
+
+.ais-Hits-item{
+  @media screen and (max-width: 767px) {
+    width: auto!important;
+   }
+}
+
+.modal-content {
+  background-color: #754dad;
+}
+
+.modal-title {
+  color: white;
+  h4{
+    color: white;
+  }
+}
+
+.btn-close{
+  color: white;
+}

@@ -101,7 +101,7 @@ const Main = () => {
           />
           <Route
             exact
-            path="/users/:userId/"
+            path="/users/profile"
             element={
               <PrivateRoute>
                 <UserPage />
@@ -119,7 +119,7 @@ const Main = () => {
           />
           <Route
             exact
-            path="/lists/:listId/:userId"
+            path="/lists/:listId"
             element={
               <PrivateRoute>
                 <ListDetails />
@@ -128,7 +128,7 @@ const Main = () => {
           />
           <Route
             exact
-            path="/lists/:userId"
+            path="/lists"
             element={
               <PrivateRoute>
                 <List />
@@ -146,7 +146,7 @@ const Main = () => {
           />
           <Route
             exact
-            path="/new/:userId"
+            path="/new"
             element={
               <PrivateRoute>
                 <NewLists />
@@ -155,7 +155,7 @@ const Main = () => {
           />
           <Route
             exact
-            path="/movies"
+            path="/search_movies"
             element={
               <PrivateRoute>
                 <Movie />

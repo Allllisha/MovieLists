@@ -1,8 +1,8 @@
 import React from "react";
 import "../stylesheets/List.scss";
+import Image from "../image/cinema.jpeg";
 import { useState, useEffect } from "react";
 import { getCurrentUser } from "./Auth";
-import { useParams } from "react-router-dom";
 import { api } from "./Axios";
 import { Link } from "react-router-dom";
 import { FaEdit } from "react-icons/fa";
@@ -12,23 +12,9 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 
 const UserPage = () => {
-  const { userId } = useParams();
   const [lists, setLists] = useState([]);
+  const [image, setImage] = useState([]);
   const [follows, setFollows] = useState([]);
-
-
-  const getListsData = async () => {
-    const res = await api.get(
-      `http://localhost:8080/api/v1/users/${userId}.json`
-    );
-    setLists(res.data.lists);
-    setFollows(res.data.list_followers);
-  };
-
-  useEffect(() => {
-    getListsData();
-  });
-
 
   const [user, setCurrentUser] = useState([]);
   const getCurrentUserData = async () => {
@@ -39,6 +25,68 @@ const UserPage = () => {
   useEffect(() => {
     getCurrentUserData();
   });
+
+
+  const getListsData = async () => {
+    const res = await api.get(
+      `http://localhost:8080/api/v1/users/${user.id}.json`
+    );
+    setLists(res.data.lists);
+    setImage(res.data.image.url);
+    setFollows(res.data.list_followers);
+  };
+
+  useEffect(() => {
+    getListsData();
+  });
+
+
+
+
+  const currentUser = getCurrentUser();
+  const WelcomeMessage = () => {
+    if ( image === null ) {
+      return (
+        <div className="welcome-user">
+          <img
+            src={Image}
+            alt=""
+          />
+          <div className="user-info">
+            <div className="welcome">
+            </div>
+            <div className="nickname">
+              <h5>
+                <Link to={`/users/${user.id}/edit`}>{user.nickname}</Link>
+              </h5>
+            </div>
+          </div>
+        </div>
+      );
+    } else if (currentUser) {
+      return (
+        <div class="welcome-user">
+          <img src={`http://localhost:8080${image}`} alt="" />
+          <div className="user-info">
+            <div className="welcome">
+            </div>
+            <div className="nickname">
+              <h5>
+                <Link to={`/users/${user.id}/edit`}>{user.nickname}</Link>
+              </h5>
+            </div>
+          </div>
+        </div>
+      );
+    } else {
+      return (
+        <>
+          <h1>Please Sign in.</h1>
+        </>
+      );
+    }
+  };
+
 
   const handleOnDelete = async (id, event) => {
     event.preventDefault();
@@ -64,7 +112,7 @@ const UserPage = () => {
     <div>
       <div className="home-banner">
         <div className="hb-container">
-          <h1>My Movie list</h1>
+        <WelcomeMessage />
         </div>
       </div>
 
@@ -86,7 +134,7 @@ const UserPage = () => {
                     />
                     <div className="card-img-overlay">
                       <h4 className="card-title">
-                        <Link to={`/lists/${list.id}/${user.id}`}>
+                        <Link to={`/lists/${list.id}`}>
                           {list.name}
                         </Link>
                       </h4>

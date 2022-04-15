@@ -3,15 +3,26 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import "../stylesheets/Form.scss";
-import { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { getCurrentUser } from "./Auth";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { api } from "./Axios";
 
 const NewLists = () => {
-  const { userId } = useParams();
+  const [user, setCurrentUser] = useState([]);
+
+  const getCurrentUserData = async () => {
+    const res = await getCurrentUser();
+    setCurrentUser(res.data.data);
+  };
+
+  useEffect(() => {
+    getCurrentUserData();
+  });
+
   const [newList, setNewList] = useState({
     name: "",
-    user_id: userId,
+    user_id: "",
   });
 
   const [image, setImage] = useState({
@@ -37,18 +48,13 @@ const NewLists = () => {
   const navigate = useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
-    // const listsData = {
-    // name: newList.name,
-    // user_id: newList.user_id,
-    // image_url: image.image_url,
-    // };
-
+ 
     const sendPostRequest = async () => {
       try {
         let params = new FormData();
         params.append("image_url", image.images);
         params.append("name", newList.name);
-        params.append("user_id", newList.user_id);
+        params.append("user_id", user.id);
         const response = await api.post(
           `http://localhost:8080/api/v1/lists.json`,
           params,

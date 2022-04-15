@@ -5,21 +5,22 @@ import { getCurrentUser } from "./Auth";
 import { api } from "./Axios";
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
-import {  useParams } from "react-router-dom";
 
 const List = () => {
   const [lists, setLists] = useState([]);
-  const { userId } = useParams();
+  // const [listFollower, setlistFollower] = useState([]);
 
   const getListsData = async () => {
     const res = await api.get("http://localhost:8080/api/v1/lists.json");
-    console.log(res.data);
     setLists(res.data);
+    // setlistFollower(res.data.list_followers)
   };
 
   useEffect(() => {
     getListsData();
   }, []);
+
+
 
   const [user, setCurrentUser] = useState([]);
   const getCurrentUserData = async () => {
@@ -35,11 +36,21 @@ const List = () => {
     event.preventDefault();
     let params = new FormData();
     params.append("list_id", id);
-    params.append("user_id", userId);
+    params.append("user_id", user.id);
     const response = await api.post(`http://localhost:8080/api/v1/list_followers.json`, params);
     console.log(response);
   };
- 
+
+
+  // const handleOnClick= async (id, event) => {
+  //   event.preventDefault();
+  //   let params = new FormData();
+  //   params.append("list_id", id);
+  //   params.append("user_id", userId);
+  //   const response = await api.post(`http://localhost:8080/api/v1/list_followers.json`, params);
+  //   console.log(response);
+  // };
+
   return (
     <div>
       <div className="home-banner">
@@ -59,14 +70,13 @@ const List = () => {
                 />
                 <div className="card-img-overlay">
                   <h4 className="card-title">
-                    <Link to={`/lists/${list.id}/${user.id}`}>{list.name}</Link>
+                    <Link to={`/lists/${list.id}`}>{list.name}</Link>
                   </h4>
                   <div className="follow-button">
-                  <Button
-                   onClick={(e) => {
-                    handleOnFollow(list.id, e);
-                  }}
-                  >+ Follow</Button>
+                  {user.id === list.id 
+                    ? <Button onClick={(e) => {handleOnFollow(list.id,  e)}}>Followed</Button>
+                    : <Button onClick={(e) => {handleOnFollow(list.id,  e)}}>Add</Button>}
+                  
                   </div>
                 </div>
               </div>
