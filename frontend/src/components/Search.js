@@ -1,4 +1,4 @@
-import { api } from "./Axios";
+import { api } from "../apis/Axios";
 import { useState, useEffect } from "react";
 import algoliasearch from 'algoliasearch'; 
 

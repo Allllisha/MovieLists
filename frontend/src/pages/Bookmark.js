@@ -5,7 +5,7 @@ import Button from "react-bootstrap/Button";
 import "../stylesheets/Form.scss";
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { api } from "./Axios";
+import { api } from "../apis/Axios";
 
 const Bookmark = () => {
   const { listId } = useParams();

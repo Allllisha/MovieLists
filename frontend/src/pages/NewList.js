@@ -3,10 +3,10 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import "../stylesheets/Form.scss";
-import { getCurrentUser } from "./Auth";
+import { getCurrentUser } from "../apis/Auth";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { api } from "./Axios";
+import { api } from "../apis/Axios";
 
 const NewLists = () => {
   const [user, setCurrentUser] = useState([]);

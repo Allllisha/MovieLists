@@ -1,11 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { api } from "./Axios";
+import { api } from "../apis/Axios";
 import { useNavigate } from "react-router-dom";
 import "../stylesheets/Movie.scss";
 import { FaStar } from "react-icons/fa";
 import { useState, useEffect } from "react";
-import { getCurrentUser } from "./Auth";
+import { getCurrentUser } from "../apis/Auth";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";

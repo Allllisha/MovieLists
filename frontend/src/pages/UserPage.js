@@ -2,8 +2,8 @@ import React from "react";
 import "../stylesheets/List.scss";
 import Image from "../image/cinema.jpeg";
 import { useState, useEffect } from "react";
-import { getCurrentUser } from "./Auth";
-import { api } from "./Axios";
+import { getCurrentUser } from "../apis/Auth";
+import { api } from "../apis/Axios";
 import { Link } from "react-router-dom";
 import { FaEdit } from "react-icons/fa";
 import { FaTrash } from "react-icons/fa";
@@ -122,7 +122,7 @@ const UserPage = () => {
                       <h4 className="card-title">
                         <Link to={`/lists/${list.id}`}>{list.name}</Link>
                       </h4>
-                      <div class="item">
+                      <div className="item">
                         <div className="icon-edit">
                           <Link to={`/lists/${list.id}/edit`}>
                             <FaEdit />
