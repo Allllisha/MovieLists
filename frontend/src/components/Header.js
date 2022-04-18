@@ -3,7 +3,7 @@ import Cookies from 'js-cookie';
 import Image from "../image/cinema.jpeg";
 import { makeStyles } from '@material-ui/core/styles';
 import {  useState, useEffect } from 'react';
-import {  signOut, getCurrentUser } from './Auth';
+import {  signOut, getCurrentUser } from '../apis/Auth';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';

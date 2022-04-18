@@ -3,15 +3,26 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import "../stylesheets/Form.scss";
-import { useState } from "react";
+import { getCurrentUser } from "../apis/Auth";
+import { useState,useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { api } from "./Axios";
+import { api } from "../apis/Axios";
 
-const UserEdit = () => {
-  const { userId } = useParams();
-  const [user, setUser] = useState({
-    nickname: "",
-    user_id: userId,
+const ListsEdit = () => {
+  const [user, setCurrentUser] = useState([]);
+  const { listId } = useParams();
+  const getCurrentUserData = async () => {
+    const res = await getCurrentUser();
+    setCurrentUser(res.data.data);
+  };
+
+  useEffect(() => {
+    getCurrentUserData();
+  });
+
+  const [newList, setNewList] = useState({
+    name: "",
+    user_id: "",
   });
 
   const [image, setImage] = useState({
@@ -20,8 +31,8 @@ const UserEdit = () => {
 
   const handleOnChange = (event) => {
     const value = event.target.value;
-    setUser({
-      ...user,
+    setNewList({
+      ...newList,
       [event.target.name]: value,
     });
   };
@@ -37,16 +48,18 @@ const UserEdit = () => {
   const navigate = useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
-
+ 
     const sendPostRequest = async () => {
       try {
         let params = new FormData();
-        params.append("image", image.images);
-        params.append("nickname", user.nickname);
-        params.append("user_id", user.user_id);
-        const response = await api.patch(`/users/${userId}.json`, params, {
-          headers: { "content-type": "multipart/form-data" },
-        });
+        params.append("image_url", image.images);
+        params.append("name", newList.name);
+        params.append("user_id", user.id);
+        const response = await api.patch(
+          `/lists/${listId}.json`,
+          params,
+          { headers: { "content-type": "multipart/form-data" } }
+        );
         console.log(response.data);
         navigate("/home");
       } catch (err) {
@@ -59,15 +72,15 @@ const UserEdit = () => {
   return (
     <div className="bg">
       <div className="glass">
-        <div class="form-container">
+        <div className="form-container">
           <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3">
-              <Form.Label>Username</Form.Label>
+              <Form.Label>Name</Form.Label>
               <Form.Control
-                type="nickname"
-                placeholder="username"
-                name="nickname"
-                value={user.nickname}
+                type="name"
+                placeholder="name"
+                name="name"
+                value={newList.name}
                 onChange={handleOnChange}
               />
             </Form.Group>
@@ -81,7 +94,7 @@ const UserEdit = () => {
                 type="file"
                 id="formFileMultiple"
                 multiple
-                value={user.images}
+                value={newList.images}
                 onChange={handleOnFileChange}
               />
             </div>
@@ -95,4 +108,4 @@ const UserEdit = () => {
   );
 };
 
-export default UserEdit;
+export default ListsEdit;

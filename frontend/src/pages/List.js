@@ -1,13 +1,15 @@
 import React from "react";
 import "../stylesheets/List.scss";
 import { useState, useEffect } from "react";
-import { getCurrentUser } from "./Auth";
-import { api } from "./Axios";
+import { getCurrentUser } from "../apis/Auth";
+import { api } from "../apis/Axios";
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 
 const List = () => {
   const [lists, setLists] = useState([]);
+  const [user, setCurrentUser] = useState([]);
+  const [followUser, setFollowUser] = useState([]);
 
   const getListsData = async () => {
     const res = await api.get("/lists.json");
@@ -18,7 +20,6 @@ const List = () => {
     getListsData();
   }, []);
 
-  const [user, setCurrentUser] = useState([]);
   const getCurrentUserData = async () => {
     const res = await getCurrentUser();
     setCurrentUser(res.data.data);
@@ -26,6 +27,15 @@ const List = () => {
 
   useEffect(() => {
     getCurrentUserData();
+  });
+
+  const getCurrentUserFollowData = async () => {
+    const res = await api.get(`/users/${user.id}.json`);
+    setFollowUser(res.data.list_followers);
+  };
+
+  useEffect(() => {
+    getCurrentUserFollowData();
   });
 
   const handleOnFollow = async (id, event) => {
@@ -59,7 +69,7 @@ const List = () => {
                     <Link to={`/lists/${list.id}`}>{list.name}</Link>
                   </h4>
                   <div className="follow-button">
-                    {user.id === list.id ? (
+                    {followUser.find(value => {return value.list_id === list.id}) ? (
                       <Button
                         onClick={(e) => {
                           handleOnFollow(list.id, e);

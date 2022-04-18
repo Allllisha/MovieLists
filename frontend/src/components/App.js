@@ -1,21 +1,21 @@
 import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
 import React, { useState, useEffect, createContext } from "react";
-import Home from "./Home";
-import UserEdit from "./UserEdit";
-import UserPage from "./UserPage";
-import Movie from "./Movie";
-import Page from "./Page";
-import List from "./List";
-import Bookmark from "./Bookmark";
-import NewLists from "./NewList";
-import MovieDetails from "./MovieDetails";
-import ListDetails from "./ListDetails";
-import ListEdit from "./ListEdit";
-import SignUp from "./SignUp";
-import SignIn from "./SignIn";
+import Home from "../pages/Home";
+import UserEdit from "../pages/UserEdit";
+import UserPage from "../pages/UserPage";
+import Movie from "../pages/Movie";
+import Page from "../pages/Page";
+import List from "../pages/List";
+import Bookmark from "../pages/Bookmark";
+import NewLists from "../pages/NewList";
+import MovieDetails from "../pages/MovieDetails";
+import ListDetails from "../pages/ListDetails";
+import ListEdit from "../pages/ListEdit";
+import SignUp from "../pages/SignUp";
+import SignIn from "../pages/SignIn";
 import Header from "./Header";
 import Footer from "./Footer";
-import { getCurrentUser } from "./Auth";
+import { getCurrentUser } from "../apis/Auth";
 export const AuthContext = createContext();
 
 const App = () => {

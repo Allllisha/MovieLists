@@ -1,11 +1,11 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { api } from "./Axios";
+import { api } from "../apis/Axios";
 import { useNavigate, useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import { getCurrentUser } from "./Auth";
+import { getCurrentUser } from "../apis/Auth";
 import "../stylesheets/MovieDetails.scss";
 import "../stylesheets/ListDetails.scss";
 import { FiDelete } from "react-icons/fi";

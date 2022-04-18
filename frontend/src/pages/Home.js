@@ -2,7 +2,7 @@ import React from "react";
 import "../stylesheets/Home.scss";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { getCurrentUser } from "./Auth";
+import { getCurrentUser } from "../apis/Auth";
 import { FaSearch } from "react-icons/fa";
 import { FaFilm } from "react-icons/fa";
 import { FaFileVideo } from "react-icons/fa";
