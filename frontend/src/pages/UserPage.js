@@ -112,7 +112,7 @@ const UserPage = () => {
           <div className="lists-container d-flex justify-content-around my-box-light flex-wrap mb-2">
             {lists.map((list) => {
               return (
-                <div>
+                <div key={list.id}>
                   <div className="card bg-dark text-white">
                     <img
                       src={`http://localhost:8080${list.image_url.url}`}

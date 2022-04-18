@@ -69,7 +69,9 @@ const List = () => {
                     <Link to={`/lists/${list.id}`}>{list.name}</Link>
                   </h4>
                   <div className="follow-button">
-                    {followUser.find(value => {return value.list_id === list.id}) ? (
+                    {followUser.find((value) => {
+                      return value.list_id === list.id;
+                    }) ? (
                       <Button
                         onClick={(e) => {
                           handleOnFollow(list.id, e);
