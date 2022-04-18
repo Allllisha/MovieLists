@@ -25,8 +25,6 @@ const Bookmark = () => {
     getMoviesData();
   }, []);
 
-
-
   const handleOnChange = (event) => {
     const value = event.target.value;
     setBookmark({
@@ -34,8 +32,6 @@ const Bookmark = () => {
       [event.target.name]: value,
     });
   };
-
-
 
   const navigate = useNavigate();
   const handleSubmit = (event) => {

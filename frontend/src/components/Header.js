@@ -81,7 +81,7 @@ const Header = () => {
       return (
         <div className="header-users"> 
         <div>
-        <Link to={`/users/profile`}><img src={`http://localhost:8080${ image }`} alt="" /></Link>
+        <Link to={`/users/profile`}><img src={`${process.env.REACT_APP_ROOT}${image}`} alt="" /></Link>
          </div>
          <div>
          <Button

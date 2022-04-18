@@ -59,7 +59,7 @@ const UserEdit = () => {
   return (
     <div className="bg">
       <div className="glass">
-        <div class="form-container">
+        <div className="form-container">
           <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3">
               <Form.Label>Username</Form.Label>

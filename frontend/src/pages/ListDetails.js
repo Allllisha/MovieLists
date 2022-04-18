@@ -22,7 +22,6 @@ import "swiper/scss/pagination";
 const ListDetails = () => {
   const [list, setList] = useState([]);
   const { listId } = useParams();
-  // const [bookmarks, setBookmarks] = useState([]);
   const [review, setReview] = useState({
     rating: "",
     comment: "",
@@ -48,7 +47,6 @@ const ListDetails = () => {
     getCurrentUserData();
   });
 
-
   const handleOnChange = (event) => {
     const value = event.target.value;
     setReview({
@@ -68,10 +66,7 @@ const ListDetails = () => {
         params.append("comment", review.comment);
         params.append("user_id", user.id);
         params.append("list_id", listId);
-        const response = await api.post(
-          `/list_reviews.json`,
-          params
-        );
+        const response = await api.post(`/list_reviews.json`, params);
         console.log(response.data);
         navigate(`/lists/${list.id}`);
       } catch (err) {
@@ -81,14 +76,9 @@ const ListDetails = () => {
     sendPostRequest();
   };
 
-
-
-
   const handleOnMovieDelete = async (id, event) => {
     event.preventDefault();
-    const response = await api.delete(
-      `/bookmarks/${id}.json`
-    );
+    const response = await api.delete(`/bookmarks/${id}.json`);
     console.log(response);
     const bookmarkItems = list.bookmarks.filter((item) => item.id !== id);
     setList(bookmarkItems);
@@ -104,26 +94,21 @@ const ListDetails = () => {
 
   const handleOnDelete = async (id, event) => {
     event.preventDefault();
-    const response = await api.delete(
-      `/list_reviews/${id}.json`
-    );
+    const response = await api.delete(`/list_reviews/${id}.json`);
     console.log(response);
     const reviewItems = review.filter((item) => item.id !== id);
     setReview(reviewItems);
   };
 
   const AddMovie = () => {
-    if ( list.user_id === user.id ) {
+    if (list.user_id === user.id) {
       return (
         <Link to={`/bookmarks/lists/${listId}`}>
-        <Button>Add Movie</Button>
-      </Link>
+          <Button>Add Movie</Button>
+        </Link>
       );
     } else {
-      return (
-        <>
-        </>
-      );
+      return <></>;
     }
   };
 
@@ -150,9 +135,15 @@ const ListDetails = () => {
 
                     <div className="edit-delete">
                       <div className="delete-item">
-                      {list.user_id === user.id 
-                    ? <FaTrash onClick={(e) => {handleOnMovieDelete(bookmark.id, e);}}/>
-                    : <> </>}  
+                        {list.user_id === user.id ? (
+                          <FaTrash
+                            onClick={(e) => {
+                              handleOnMovieDelete(bookmark.id, e);
+                            }}
+                          />
+                        ) : (
+                          <> </>
+                        )}
                       </div>
                     </div>
 
@@ -171,7 +162,7 @@ const ListDetails = () => {
       </Slider>
 
       <div className="bookmark-button">
-      <AddMovie />
+        <AddMovie />
       </div>
 
       <div className="comment-container">
@@ -181,11 +172,17 @@ const ListDetails = () => {
               <div className="comments">
                 <div className="reviewer-info">
                   <div className="reviewer-foto">
-                  {review.user_image.url
-                    ? <img src={`http://localhost:8080${ review.user_image.url }`} alt="" />
-                    : <img src={Image} alt="" />}</div>
-                  <div className="reviewer-name">{review.user_name}</div>
+                    {review.user_image.url ? (
+                      <img
+                        src={`http://localhost:8080${review.user_image.url}`}
+                        alt=""
+                      />
+                    ) : (
+                      <img src={Image} alt="" />
+                    )}
                   </div>
+                  <div className="reviewer-name">{review.user_name}</div>
+                </div>
                 <div className="comment-line">
                   <div className="stars">{star.repeat(review.rating)}</div>
                   <div>{review.comment}</div>
@@ -196,9 +193,15 @@ const ListDetails = () => {
                       {moment(review.created_at).format("D MMMM YYYY HH:mm")}
                     </p>
                     <div className="trash-item">
-                    {list.user_id === user.id 
-                    ? <FiDelete onClick={(e) => {handleOnDelete(review.id, e)}}/>
-                    : <> </>}
+                      {list.user_id === user.id ? (
+                        <FiDelete
+                          onClick={(e) => {
+                            handleOnDelete(review.id, e);
+                          }}
+                        />
+                      ) : (
+                        <> </>
+                      )}
                     </div>
                   </div>
                   <hr />

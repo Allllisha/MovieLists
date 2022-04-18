@@ -58,7 +58,7 @@ const UserPage = () => {
     } else if (currentUser) {
       return (
         <div className="welcome-user">
-          <img src={`http://localhost:8080${image}`} alt="" />
+          <img src={`${process.env.REACT_APP_ROOT}${image}`} alt="" />
           <div className="user-info">
             <div className="welcome"></div>
             <div className="nickname">
@@ -115,7 +115,7 @@ const UserPage = () => {
                 <div key={list.id}>
                   <div className="card bg-dark text-white">
                     <img
-                      src={`http://localhost:8080${list.image_url.url}`}
+                      src={`${process.env.REACT_APP_ROOT}${list.image_url.url}`}
                       alt=""
                     />
                     <div className="card-img-overlay">
@@ -150,7 +150,7 @@ const UserPage = () => {
                 <div>
                   <div className="card bg-dark text-white">
                     <img
-                      src={`http://localhost:8080${follow.list_image.url}`}
+                      src={`${process.env.REACT_APP_ROOT}${follow.list_image.url}`}
                       alt=""
                     />
                     <div className="card-img-overlay">

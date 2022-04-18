@@ -122,7 +122,7 @@ const MovieDetails = () => {
                 <div className="reviewer-info">
                   <div className="reviewer-foto">
                   {review.user_image.url
-                    ? <img src={`http://localhost:8080${ review.user_image.url }`} alt="" />
+                    ? <img src={`${process.env.REACT_APP_ROOT}${ review.user_image.url }`} alt="" />
                     : <img src={Image} alt="" />}</div>
                   <div className="reviewer-name">{review.user_name}</div>
                   </div>
