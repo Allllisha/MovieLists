@@ -4,7 +4,7 @@
 自分の好きな映画を検索して、好きな映画だけを集めた自分のオリジナルのリストが作れるアプリです。
 また他の人が作ったリストをフォローしたり、映画やリストにコメントを残したりすることができます。
 
-MovieList app allows users to make the own lists with their selected movies. 
+MovieList app allows users to make own lists with their selected movies. 
 Users are able to follow the lists which is created by other users and also can leave comments and ratings in the list and movies.
 
 ![image](https://user-images.githubusercontent.com/90506535/163818216-f2509607-0701-43c1-8f1c-d7f241ce231a.png)
