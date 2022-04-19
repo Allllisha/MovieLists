@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
-      mount_devise_token_auth_for 'User', at: 'auth', controllers: {
-        registrations: 'api/v1/auth/registrations'
-      }
+      mount_devise_token_auth_for "User", at: "auth", controllers: {
+                                            registrations: "api/v1/auth/registrations",
+                                          }
 
       devise_scope :v1_user do
         post "auth/guest_sign_in", to: "auth/sessions#guest_sign_in"
@@ -17,10 +17,10 @@ Rails.application.routes.draw do
       resources :movie_reviews
       resources :movie_genres
       resources :genres
-      resources :lists 
+      resources :lists
       resources :list_reviews
       resources :list_followers
-      resources :bookmarks 
+      resources :bookmarks
     end
   end
 end

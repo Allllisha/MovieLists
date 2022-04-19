@@ -1,7 +1,6 @@
 module Api
   module V1
     class GenresController < ApplicationController
-
       before_action :set_genre, only: [:show, :update, :destroy]
 
       def index
@@ -9,7 +8,6 @@ module Api
       end
 
       def show
-  
       end
 
       def create
@@ -33,7 +31,6 @@ module Api
       def genre_params
         params.permit(:list_id, :user_id, :comment, :rating)
       end
-
     end
   end
 end
