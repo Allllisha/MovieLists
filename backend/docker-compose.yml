@@ -25,7 +25,6 @@ services:
     stdin_open: true
     environment:
       TZ: "Asia/Tokyo"
-      RAILS_ENV: production
 volumes:
   bundle:
     driver: local
