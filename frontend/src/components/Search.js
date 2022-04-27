@@ -16,7 +16,6 @@ export const GenerateIndex = async () => {
   const objects = movies.map((movie) => {
     return {
       objectID: movie.id,
-      url: movie.id,
       overview: movie.overview,
       poster_url: movie.poster_url,
       title: movie.title,
