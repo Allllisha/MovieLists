@@ -23,7 +23,7 @@ export const GenerateIndex = async () => {
       rating: movie.rating,
     };
   });
-  const client = algoliasearch(`${process.env.REACT_APP_ALGID}`, `${process.env.REACT_APP_ALADMIN}`);
-  const index = client.initIndex('MovieList');
+  const client = algoliasearch("BO4ZQJ03SB", "9d6db57839b25a5cd63807d7d5620804");
+  const index = client.initIndex('MovieProduction');
   await index.saveObjects(objects, { autoGenerateObjectIDIfNotExist: true });
 };
