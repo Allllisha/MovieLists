@@ -334,11 +334,10 @@ h1 {
           border-radius: 7px;
           object-fit: cover;
 
+        }
+        @media screen and (max-width: 768px) {
           img {
-            border-radius: 7px;
-            height: 100px;
-            object-fit: cover;
-            width: 70px;
+            display: none;
           }
         }
       }
