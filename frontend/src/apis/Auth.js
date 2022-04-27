@@ -2,7 +2,7 @@ import { api } from "./Axios";
 import Cookies from "js-cookie";
 
 export const signUp = (params) => {
-  return api.post("/api/v1/auth", params);
+  return api.post("/auth", params);
 };
 
 export const signIn = (params) => {
