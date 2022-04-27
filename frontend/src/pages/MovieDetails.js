@@ -23,9 +23,7 @@ const MovieDetails = () => {
 
 
   const getMoviesData = async () => {
-    const res = await api.get(
-      `/movies/${movieId}.json`
-    );
+    const res = await api.get(`/movies/${movieId}.json`);
     setMovie(res.data);
   };
 

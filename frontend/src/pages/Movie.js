@@ -35,7 +35,7 @@ const Movie = () => {
     const MyVerticallyCenteredModal = (props) => {
       const [lists, setLists] = useState([]);
       const [bookmark, setBookmark] = useState({
-        movie_id: hit.objectID,
+        movie_id: "",
         list_id: "",
         comment: "",
       });
@@ -60,15 +60,14 @@ const Movie = () => {
       const navigate = useNavigate();
       const handleSubmit = (event) => {
         event.preventDefault();
-        const BookmarksData = {
-          movie_id: bookmark.movie_id,
-          list_id: bookmark.list_id,
-          comment: bookmark.comment,
-        };
 
         const sendPostRequest = async () => {
           try {
-            const response = await api.post(`/bookmarks.json`, BookmarksData);
+            let params = new FormData();
+            params.append("movie_id", hit.objectID);
+            params.append("list_id", bookmark.list_id);
+            params.append("comment", bookmark.comment);
+            const response = await api.post(`/bookmarks.json`, params);
             console.log(response);
             navigate(`/search_movies`);
           } catch (err) {
@@ -133,6 +132,7 @@ const Movie = () => {
 
     return (
       <div className="container-glass">
+        {console.log(hit)}
         <img src={hit.poster_url} alt="" />
         <div className="movie-card-text">
           <div className="movie-card-description">
