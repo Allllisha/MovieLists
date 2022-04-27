@@ -103,9 +103,7 @@ const ListDetails = () => {
   const AddMovie = () => {
     if (list.user_id === user.id) {
       return (
-        <Link to={`/bookmarks/lists/${listId}`}>
-          <Button>Add Movie</Button>
-        </Link>
+        <Button><Link to={`/bookmarks/lists/${listId}`}>Add Movie</Link></Button>
       );
     } else {
       return <></>;

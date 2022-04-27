@@ -6,7 +6,7 @@ export const signUp = (params) => {
 };
 
 export const signIn = (params) => {
-  return api.post("auth/sign_in", params);
+  return api.post("/auth/sign_in", params);
 };
 
 export const signOut = () => {

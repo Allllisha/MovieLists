@@ -61,7 +61,7 @@ const List = () => {
             <div>
               <div className="card bg-dark text-white">
                 <img
-                  src={`${process.env.REACT_APP_ROOT}${list.image_url.url}`}
+                  src={`${process.env.REACT_APP_TEST}${list.image_url.url}`}
                   alt=""
                 />
                 <div className="card-img-overlay">
