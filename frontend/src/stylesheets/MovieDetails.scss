@@ -337,7 +337,10 @@ h1 {
         }
         @media screen and (max-width: 768px) {
           img {
-            display: none;
+            width: 70px;
+            height: 100px;
+            border-radius: 7px;
+            object-fit: cover;
           }
         }
       }
