@@ -7,6 +7,7 @@ export const GenerateIndex = async () => {
   const getMoviesData = async () => {
     const res = await api.get("/movies.json");
     setMovies(res.data);
+    console.log(res.data)
   };
 
   useEffect(() => {
@@ -23,6 +24,6 @@ export const GenerateIndex = async () => {
     };
   });
   const client = algoliasearch("BO4ZQJ03SB", "9d6db57839b25a5cd63807d7d5620804");
-  const index = client.initIndex('MovieProduction');
+  const index = client.initIndex('MovieList');
   await index.saveObjects(objects, { autoGenerateObjectIDIfNotExist: true });
 };
