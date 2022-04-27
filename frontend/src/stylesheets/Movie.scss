@@ -198,12 +198,25 @@ h1{
   left: -40px;
   z-index: -1;
 }
+
+@media screen and (max-width: 768px) {
+  .container-glass::before {
+  display: none
+  }
+} 
+
 .container-glass::after {
   height: 40px;
   width: 40px;
   bottom: 20px;
   right: -10px;
   z-index: 2;
+}
+
+@media screen and (max-width: 768px) {
+  .container-glass::after {
+    display: none;
+  }  
 }
 
 img {
