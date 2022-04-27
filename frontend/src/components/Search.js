@@ -1,11 +1,12 @@
-import { api } from "../apis/Axios";
+// import { api } from "../apis/Axios";
 import { useState, useEffect } from "react";
 import algoliasearch from 'algoliasearch'; 
+import axios from 'axios'
 
 export const GenerateIndex = async () => {
   const [movies, setMovies] = useState([]);
   const getMoviesData = async () => {
-    const res = await api.get("/movies.json");
+    const res = await axios.get("https://api.my-movielists.com/api/v1/movies.json");
     setMovies(res.data);
     console.log(res.data)
   };
@@ -13,7 +14,8 @@ export const GenerateIndex = async () => {
   useEffect(() => {
     getMoviesData();
   }, []);
-
+ 
+  console.log(movies)
   const objects = movies.map((movie) => {
     return {
       objectID: movie.id,
