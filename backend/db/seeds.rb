@@ -1,4 +1,5 @@
 puts "Clearing database..."
+Movie.destroy_all
 
 puts "Generating movies..."
 page_number = 0

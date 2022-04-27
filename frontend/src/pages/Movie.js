@@ -16,8 +16,8 @@ import "instantsearch.css/themes/algolia-min.css";
 const Movie = () => {
   const [user, setCurrentUser] = useState([]);
   const searchClient = algoliasearch(
-    "BO4ZQJ03SB",
-    "178cad264ed6cb2b4939bf08ba7a1313"
+    `${process.env.REACT_APP_ALGID}`,
+    `${process.env.REACT_APP_ALGAPP}`
   );
 
   const getCurrentUserData = async () => {
