@@ -132,7 +132,6 @@ const Movie = () => {
 
     return (
       <div className="container-glass">
-        {console.log(hit)}
         <img src={hit.poster_url} alt="" />
         <div className="movie-card-text">
           <div className="movie-card-description">
@@ -163,7 +162,7 @@ const Movie = () => {
 
   return (
     <div>
-      <InstantSearch indexName="MovieList" searchClient={searchClient}>
+      <InstantSearch indexName="MovieProduction" searchClient={searchClient}>
         <div className="movie-container">
           <SearchBox />
         </div>

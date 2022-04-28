@@ -6,7 +6,6 @@ export const GenerateIndex = async () => {
   const [movies, setMovies] = useState([]);
   const getMoviesData = async () => {
     const res = await api.get("/movies.json");
-    console.log(res)
     setMovies(res.data);
   };
 
