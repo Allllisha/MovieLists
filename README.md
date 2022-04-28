@@ -1,8 +1,10 @@
 # MovieList
 
-username:  Arisa
-email: ardolce23@gmail.com
-password: a23123
+<ul>
+<li>username:  Arisa</li>
+<li>email: ardolce23@gmail.com</li>
+<li>password: a23123</li>
+</ul>
 
 自分の好きな映画を検索して、好きな映画だけを集めた自分のオリジナルのリストが作れるアプリです。
 また他の人が作ったリストをフォローしたり、映画やリストにコメントを残したりすることができます。
