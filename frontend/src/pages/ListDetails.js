@@ -100,17 +100,7 @@ const ListDetails = () => {
     setReview(reviewItems);
   };
 
-  const AddMovie = () => {
-    if (list.user_id === user.id) {
-      return (
-        <div className="add-movie">
-       <Link to={`/bookmarks/lists/${listId}`}>Add Movie</Link>
-       </div>
-      );
-    } else {
-      return <></>;
-    }
-  };
+
 
   return (
     <div>
@@ -162,7 +152,13 @@ const ListDetails = () => {
       </Slider>
 
       <div className="bookmark-button">
-        <AddMovie />
+       {list.user_id === user.id ? 
+        <div>
+        <button><Link to={`/bookmarks/lists/${listId}`}>Add Movie</Link></button>
+        </div>
+       :
+       <></>
+       }
       </div>
 
       <div className="comment-container">
@@ -174,7 +170,7 @@ const ListDetails = () => {
                   <div className="reviewer-foto">
                     {review.user_image.url ? (
                       <img
-                        src={`http://localhost:8080${review.user_image.url}`}
+                        src={`${process.env.REACT_APP_ROOT}${review.user_image.url}`}
                         alt=""
                       />
                     ) : (

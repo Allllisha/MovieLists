@@ -162,7 +162,7 @@ const Movie = () => {
 
   return (
     <div>
-      <InstantSearch indexName="MovieProduction" searchClient={searchClient}>
+      <InstantSearch indexName="MovieList" searchClient={searchClient}>
         <div className="movie-container">
           <SearchBox />
         </div>

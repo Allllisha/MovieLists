@@ -596,6 +596,16 @@ h1 {
   justify-content: flex-end;
   margin-right: 50px;
   margin-bottom: 50px;
+  a{
+    color: white;
+  }
+
+  button{
+    background-color: transparent;
+    border-color: white;
+    border-radius: 5px;
+    padding: 5px;
+  }
 }
 
 .edit-delete {
