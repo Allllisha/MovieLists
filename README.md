@@ -1,11 +1,5 @@
 # MovieList
 
-<ul>
-<li>username:  Arisa</li>
-<li>email: ardolce23@gmail.com</li>
-<li>password: a23123</li>
-</ul>
-
 自分の好きな映画を検索して、好きな映画だけを集めた自分のオリジナルのリストが作れるアプリです。
 また他の人が作ったリストをフォローしたり、映画やリストにコメントを残したりすることができます。
 
@@ -13,6 +7,13 @@ MovieList app allows users to make own lists with their selected movies.
 Users are able to follow the lists which is created by other users and also can leave comments and ratings in the list and movies.
 
 ![image](https://user-images.githubusercontent.com/90506535/163818216-f2509607-0701-43c1-8f1c-d7f241ce231a.png)
+
+・Login
+<ul>
+<li>username:  Arisa</li>
+<li>email: ardolce23@gmail.com</li>
+<li>password: a23123</li>
+</ul>
 
 # 使用技術
 
